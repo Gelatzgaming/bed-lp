@@ -717,8 +717,8 @@ ul.breadcrumbs {
             align-items: center;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
-    background: -webkit-linear-gradient(left, #8914fe 0%, #8063f5 100%);
-    background: linear-gradient(to right, #8914fe 0%, #8063f5 100%);
+    background: -webkit-linear-gradient(left, #ffffff 0%, #ffffff 100%);
+    background: linear-gradient(to right, #ffffff 0%, #ffffff 100%);
     padding: 17px 38px;
     position: relative;
 }
@@ -733,7 +733,7 @@ ul.breadcrumbs {
 .user-name {
     font-size: 17px;
     font-weight: 500;
-    color: #fff;
+    color: rgb(0, 0, 0);
     letter-spacing: 0;
     cursor: pointer;
     -webkit-user-select: none;
@@ -2508,7 +2508,8 @@ table.dataTable thead td {
 /* login-s3 */
 
 .login-bg {
-    background: url(../../assets/images/bg/sfac.jpg) center/cover no-repeat;
+    /* background: url(../../assets/images/bg/sfac.jpg) center/cover no-repeat; */
+    background: #e7bebe;
     position: relative;
     z-index: 1;
 }

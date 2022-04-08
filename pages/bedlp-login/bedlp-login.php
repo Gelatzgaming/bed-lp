@@ -1,5 +1,11 @@
+<?php
+include '../../includes/conn.php';
+if (!empty($_SESSION['role'])){
+    header("location: ../bedlp-dashboard/index.php");
+} ?>
 <!doctype html>
 <html class="no-js" lang="en">
+
 
 <head>
     <meta charset="utf-8">
@@ -22,7 +28,7 @@
     <link rel="stylesheet" href="../../assets/css/styles.css">
     <link rel="stylesheet" href="../../assets/css/responsive.css">
     <!-- modernizr css -->
-    <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="../../assets/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 
 <body>
@@ -41,7 +47,7 @@
                 <form method="POST" action="userData/user.bedlp-login.php">
                     <div class="login-form-head">
                         <h4>Sign In</h4>
-                        <p>Hello there, Sign in and start managing your Admin Template</p>
+                        <p>Hello there, Please login your account.</p>
                     </div>
                     <div class="login-form-body">
                         <div class="form-gp">

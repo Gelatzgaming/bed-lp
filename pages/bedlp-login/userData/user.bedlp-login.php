@@ -1,7 +1,5 @@
 <?php
 require '../../../includes/conn.php';
-ob_start();
-session_start();
 
 // Submit button <-- login.php 
 if (isset($_POST['submit'])) {
@@ -48,10 +46,9 @@ if (isset($_POST['submit'])) {
                 $_SESSION['pwd-error'] = true;
                 header("location: ../bedlp-login.php");
             } elseif ($checkPWDhash == true) {
-                $_SESSION['pre-loader'] = true;
                 $_SESSION['role'] = "Master Key";
                 $_SESSION['mk_id'] = $row['mk_id'];
-                header("Location: ../../pages/bedlp-dashboard/index.php");
+                header("location: ../../bedlp-dashboard/index.php");
             }
         }
     } elseif ($numrow_reg > 0) {
@@ -59,12 +56,11 @@ if (isset($_POST['submit'])) {
             $checkPWDhash = password_verify($password, $row['password']);
             if ($checkPWDhash == false) {
                 $_SESSION['pwd-error'] = true;
-                header('location: ../login.php');
+                header('location: ../bedlp-login.php');
             } elseif ($checkPWDhash == true) {
-                $_SESSION['pre-loader'] = true;
                 $_SESSION['role'] = "Registrar";
                 $_SESSION['reg_id'] = $row['reg_id'];
-                header('location: ../../../pages/bed-dashboard/index.php');
+                header('location: ../../bedlp-dashboard/index.php');
             }
         }
     } elseif ($numrow_prin > 0) {
@@ -72,12 +68,11 @@ if (isset($_POST['submit'])) {
             $checkPWDhash = password_verify($password, $row['password']);
             if ($checkPWDhash == false) {
                 $_SESSION['pwd-error'] = true;
-                header('location: ../login.php');
+                header('location: ../bedlp-login.php');
             } elseif ($checkPWDhash == true) {
-                $_SESSION['pre-loader'] = true;
                 $_SESSION['role'] = "Principal";
                 $_SESSION['prin_id'] = $row['prin_id'];
-                header('location: ../../../pages/bed-dashboard/index.php');
+                header('location: ../../bedlp-dashboard/index.php');
             }
         }
     } elseif ($numrow_acc > 0) {
@@ -85,12 +80,11 @@ if (isset($_POST['submit'])) {
             $checkPWDhash = password_verify($password, $row['password']);
             if ($checkPWDhash == false) {
                 $_SESSION['pwd-error'] = true;
-                header('location: ../login.php');
+                header('location: ../bedlp-login.php');
             } elseif ($checkPWDhash == true) {
-                $_SESSION['pre-loader'] = true;
                 $_SESSION['role'] = "Accounting";
                 $_SESSION['acc_id'] = $row['acc_id'];
-                header('location: ../../../pages/bed-dashboard/index.php');
+                header('location: ../../bedlp-dashboard/index.php');
             }
         }
     } elseif ($numrow_admission > 0) {
@@ -98,12 +92,11 @@ if (isset($_POST['submit'])) {
             $checkPWDhash = password_verify($password, $row['password']);
             if ($checkPWDhash == false) {
                 $_SESSION['pwd-error'] = true;
-                header('location: ../login.php');
+                header('location: ../bedlp-login.php');
             } elseif ($checkPWDhash == true) {
-                $_SESSION['pre-loader'] = true;
                 $_SESSION['role'] = "Admission";
                 $_SESSION['admission_id'] = $row['admission_id'];
-                header('location: ../../../pages/bed-dashboard/index.php');
+                header('location: ../../bedlp-dashboard/index.php');
             }
         }
     } elseif ($numrow_teacher > 0) {
@@ -111,12 +104,11 @@ if (isset($_POST['submit'])) {
             $checkPWDhash = password_verify($password, $row['password']);
             if ($checkPWDhash == false) {
                 $_SESSION['pwd-error'] = true;
-                header('location: ../login.php');
+                header('location: ../bedlp-login.php');
             } elseif ($checkPWDhash == true) {
-                $_SESSION['pre-loader'] = true;
                 $_SESSION['role'] = "Teacher";
                 $_SESSION['teacher_id'] = $row['teacher_id'];
-                header('location: ../../../pages/bed-dashboard/index.php');
+                header('location: ../../bedlp-dashboard/index.php');
             }
         }
     } elseif ($numrow_adviser > 0) {
@@ -124,12 +116,11 @@ if (isset($_POST['submit'])) {
             $checkPWDhash = password_verify($password, $row['password']);
             if ($checkPWDhash == false) {
                 $_SESSION['pwd-error'] = true;
-                header('location: ../login.php');
+                header('location: ../bedlp-login.php');
             } elseif ($checkPWDhash == true) {
-                $_SESSION['pre-loader'] = true;
                 $_SESSION['role'] = "Adviser";
                 $_SESSION['ad_id'] = $row['ad_id'];
-                header('location: ../../../pages/bed-dashboard/index.php');
+                header('location: ../../bedlp-dashboard/index.php');
             }
         }
     } elseif ($numrow_student > 0) {
@@ -137,17 +128,16 @@ if (isset($_POST['submit'])) {
             $checkPWDhash = password_verify($password, $row['password']);
             if ($checkPWDhash == false) {
                 $_SESSION['pwd-error'] = true;
-                header('location: ../login.php');
+                header('location: ../bedlp-login.php');
             } elseif ($checkPWDhash == true) {
-                $_SESSION['pre-loader'] = true;
                 $_SESSION['role'] = "Student";
                 $_SESSION['stud_id'] = $row['student_id'];
-                header('location: ../../../pages/bed-dashboard/index.php');
+                header('location: ../../bedlp-dashboard/index.php');
             }
         }
     } else {
         $_SESSION['no-input'] = true;
-        header("location: ../login.php");
+        header("location: ../bedlp-login.php");
     }
 }
 // End password verify
