@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>srtdash - ICO Dashboard</title>
+    <title>SFAC-BED-LP</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="../../assets/images/icon/favicon.ico">
     <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
@@ -17,6 +17,13 @@
     <!-- amchart css -->
     <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css"
         media="all" />
+    <!-- Start datatable css -->
+    <link rel="stylesheet" type="text/css" href="../../assets/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/css/responsive.bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/css/responsive.jqueryui.min.css">
+
+
     <!-- others css -->
     <link rel="stylesheet" href="../../assets/css/typography.css">
     <link rel="stylesheet" href="../../assets/css/default-css.css">
