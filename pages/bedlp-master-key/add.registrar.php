@@ -103,8 +103,8 @@
                                         </div>
 
 
-                                        <button type="button"
-                                            class="btn btn-primary mb-3 mt-3 float-right">Primary</button>
+                                        <button type="button" name="submit"
+                                            class="btn btn-primary mb-3 mt-3 float-right">Submit</button>
                                     </div>
                                 </div>
                             </div>
