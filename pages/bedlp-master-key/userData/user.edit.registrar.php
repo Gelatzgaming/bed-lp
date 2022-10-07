@@ -1,22 +1,52 @@
 <?php
 require '../../../includes/conn.php';
 
+// separate img --> Gerald
+// if (isset($_POST['upload'])) {
 
-$reg_id = $_SESSION['get-regID'];
+//     if (empty($_FILES['prof_img']['tmp_name'])) {
+//         $_SESSION['no-img'] = true;
+//         header('location: ../edit.registrar.php?reg_id=' . $reg_id);
+//     } else {
+//         $image = addslashes(file_get_contents($_FILES['prof_img']['tmp_name']));
+//         $set_userInfo = mysqli_query($conn, "UPDATE tbl_registrars SET img = '$image' WHERE reg_id = '$reg_id'") or die(mysqli_error($conn));
+//         $_SESSION['success-regEdit'] = true;
+//         header('location: ../edit.registrar.php?reg_id=' . $reg_id);
+//     }
+// } else
 
-if (isset($_POST['upload'])) {
+// OLD -->Gerald
+// if (isset($_POST['submit'])) {
 
-    if (empty($_FILES['image']['tmp_name'])) {
-        $_SESSION['no-img'] = true;
-        header('location: ../edit.registrar.php?reg_id=' . $reg_id);
-    } else {
-        $image = addslashes(file_get_contents($_FILES['image']['tmp_name']));
-        $set_userInfo = mysqli_query($conn, "UPDATE tbl_registrars SET img = '$image' WHERE reg_id = '$reg_id'") or die(mysqli_error($conn));
-        $_SESSION['success-regEdit'] = true;
-        header('location: ../edit.registrar.php?reg_id=' . $reg_id);
-    }
-} elseif (isset($_POST['submit'])) {
+//     $firstname = mysqli_real_escape_string($conn, $_POST['firstname']);
+//     $lastname = mysqli_real_escape_string($conn, $_POST['lastname']);
+//     $midname = mysqli_real_escape_string($conn, $_POST['midname']);
+//     $email = mysqli_real_escape_string($conn, $_POST['email']);
+//     $username = mysqli_real_escape_string($conn, $_POST['username']);
+//     $password = mysqli_real_escape_string($conn, $_POST['password']);
+//     $password2 = mysqli_real_escape_string($conn, $_POST['password2']);
 
+//     if (empty($password) && empty($password2)) {
+//         $_SESSION['no-pwd'] = true;
+//         header('location: ../edit.registrar.php?reg_id=' . $reg_id);
+//     } else {
+//         if ($password != $password2) {
+//             $_SESSION['error-pass'] = true;
+//             header('location: ../edit.registrar.php?reg_id=' . $reg_id);
+//         } else {
+//             $image = addslashes(file_get_contents($_FILES['prof_img']['tmp_name']));
+//             $hashpwd = password_hash($password, PASSWORD_BCRYPT);
+//             $insertUser = mysqli_query($conn, "UPDATE tbl_registrars SET reg_fname = '$firstname', reg_lname = '$lastname', reg_mname = '$midname', email = '$email', username = '$username', password = '$hashpwd' WHERE reg_id = '$reg_id'") or die(mysqli_error($conn));
+//             $_SESSION['success'] = true;
+//             header('location: ../edit.registrar.php?reg_id=' . $reg_id);
+//         }
+//     }
+// }
+
+
+if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == "POST") {
+
+    $reg_id = mysqli_real_escape_string($conn, $_POST['reg_id']);
     $firstname = mysqli_real_escape_string($conn, $_POST['firstname']);
     $lastname = mysqli_real_escape_string($conn, $_POST['lastname']);
     $midname = mysqli_real_escape_string($conn, $_POST['midname']);
@@ -25,18 +55,33 @@ if (isset($_POST['upload'])) {
     $password = mysqli_real_escape_string($conn, $_POST['password']);
     $password2 = mysqli_real_escape_string($conn, $_POST['password2']);
 
-    if (empty($password) && empty($password2)) {
-        $_SESSION['no-pwd'] = true;
+    $failed = 0;
+
+    if (empty($_FILES['prof_img']['tmp_name'])) {
+        $error_img = '<li> The <strong>upload profile</strong> is required.</li>';
+        $failed = $failed + 1;
+    }
+    if (empty($username)) {
+        $error_uname = '<li> The <strong>username field</strong> is required.</li>';
+        $failed++;
+    }
+    if ($password != $password2) {
+        $error_pass = '<li> The <strong>confirm password field</strong> does not match.</li>';
+        $failed++;
+    } elseif (empty($password)) {
+        $error_empty_pass = '<li> The <strong>password field</strong> is required.</li>';
+        $failed++;
+    }
+
+    if ($failed != 0) {
+        $_SESSION['prev_data'] = array($firstname, $lastname, $midname, $email, $username);
+        $_SESSION['errors'] = array($error_img, $error_uname, $error_pass, $error_empty_pass);
         header('location: ../edit.registrar.php?reg_id=' . $reg_id);
     } else {
-        if ($password != $password2) {
-            $_SESSION['error-pass'] = true;
-            header('location: ../edit.registrar.php?reg_id=' . $reg_id);
-        } else {
-            $hashpwd = password_hash($password, PASSWORD_BCRYPT);
-            $insertUser = mysqli_query($conn, "UPDATE tbl_registrars SET reg_fname = '$firstname', reg_lname = '$lastname', reg_mname = '$midname', email = '$email', username = '$username', password = '$hashpwd' WHERE reg_id = '$reg_id'") or die(mysqli_error($conn));
-            $_SESSION['success-regEdit'] = true;
-            header('location: ../edit.registrar.php?reg_id=' . $reg_id);
-        }
+        $image = (!empty($_FILES['prof_img']['tmp_name'])) ? addslashes(file_get_contents($_FILES['prof_img']['tmp_name'])) : null;
+        $hashpwd = password_hash($password, PASSWORD_BCRYPT);
+        $insertUser = mysqli_query($conn, "UPDATE tbl_registrars SET img = '$image', reg_fname = '$firstname', reg_lname = '$lastname', reg_mname = '$midname', email = '$email', username = '$username', password = '$hashpwd' WHERE reg_id = '$reg_id'") or die(mysqli_error($conn));
+        $_SESSION['success'] = true;
+        header('location: ../edit.registrar.php?reg_id=' . $reg_id);
     }
 }

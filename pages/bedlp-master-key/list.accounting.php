@@ -15,7 +15,20 @@
 
         <div class="main-content">
 
-            <?php include '../../includes/bedlp-navbar.php'; ?>
+            <?php include '../../includes/bedlp-navbar.php';
+            if (!empty($_SESSION['success-del'])) {
+                echo '  <div class="alert-dismiss">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert" id="alertDel">
+                    <strong>Successfully Deleted.</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+            </div>';
+                unset($_SESSION['success-del']);
+            }
+            ?>
+
 
 
             <!-- Content Wrapper. Contains page content -->
@@ -56,18 +69,42 @@
                                                     <td><?php echo $row['email'] ?></td>
                                                     <td><?php echo $row['username'] ?></td>
                                                     <td><a href="edit.accounting.php<?php echo '?acc_id=' . $id; ?>"
-                                                            type="button" class="btn btn-info mb-3 mx-1"><i
+                                                            type="button" class="btn btn-info mx-1"><i
                                                                 class="fa fa-edit"></i>
                                                             Update
                                                         </a>
-                                                        <a type="button" class="btn btn-danger mb-3 mx-1 text-white"
+                                                        <button type="button" class="btn btn-danger mx-1"
                                                             data-toggle="modal"
-                                                            data-target="#exampleModal<?php echo $id ?>"><i
-                                                                class="fa fa-trash"></i>
-                                                            Delete
-                                                        </a>
+                                                            data-target="#delete<?php echo $row['acc_id'] ?>"><i
+                                                                class="fa fa-trash"></i> Delete</button>
                                                     </td>
                                                 </tr>
+                                                <!-- Delete modal start -->
+                                                <div class="modal fade" id="delete<?php echo $row['acc_id'] ?>">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title">Delete</h5>
+                                                                <button type="button" class="close"
+                                                                    data-dismiss="modal"><span>&times;</span></button>
+                                                            </div>
+                                                            <div class="modal-body text-center my-5">
+                                                                <p>Are you sure you want to delete,
+                                                                    <i
+                                                                        class="font-weight-bold"><?php echo $row['fullname'] ?></i>
+                                                                    ?
+                                                                </p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">Cancel</button>
+                                                                <a href="userData/user.del.accounting.php?acc_id=<?php echo $row['acc_id'] ?>"
+                                                                    class="btn btn-danger">Delete</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Delete modal end -->
                                                 <?php } ?>
                                             </tbody>
                                         </table>
@@ -89,7 +126,9 @@
 
     </div>
     <?php include '../../includes/bedlp-script.php'; ?>
-
+    <script>
+    $("#alertDel").delay(2000).fadeOut();
+    </script>
 
 
 </body>

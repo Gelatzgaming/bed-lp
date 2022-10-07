@@ -77,8 +77,7 @@
                       <a href="javascript:void(0)" aria-expanded="true"><i
                               class="ti-dashboard"></i><span>dashboard</span></a>
                   </li>
-                  <li>
-                            <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-line-chart"></i>
+                        <li><a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-line-chart"></i>
                             <span>Enrollment</span></a>
                                 <ul class="collapse">
                                     <li>
@@ -91,10 +90,10 @@
                             <span>Maintenance</span></a>
                                 <ul class="collapse">
                                     <li>
-                                        <a href="index3-horizontalmenu.html">Student List </a>
+                                        <a href="../bedlp-students/list.students.php">Student List </a>
                                     </li>
                                     <li>
-                                        <a href="index3-horizontalmenu.html">Adviser List </a>
+                                        <a href="../bedlp-master-key/list.adviser.php">Adviser List </a>
                                     </li>
                                     <li><a href="#" aria-expanded="true">Subjects List</a>
                                         <ul class="collapse">
@@ -108,8 +107,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li>
-                            <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-newspaper-o"></i>
+                            <li><a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-newspaper-o"></i>
                             <span>Forms</span></a>
                                 <ul class="collapse">
                                     <li>
@@ -125,31 +123,30 @@
                             <span>View Subjects</span></a>
                                 <ul class="collapse">
                                     <li>
-                                        <a href="index3-horizontalmenu.html">ABM </a>
+                                        <a href="../bedlp-hedCurr/abm.php">ABM </a>
                                     </li>
                                     <li>
-                                        <a href="index3-horizontalmenu.html">STEM </a>
+                                        <a href="../bedlp-hedCurr/stem.php">STEM </a>
                                     </li>
                                     <li>
-                                        <a href="index3-horizontalmenu.html">HUMMS </a>
+                                        <a href="../bedlp-hedCurr/humss.php">HUMMS </a>
                                     </li>
                                     <li>
-                                        <a href="index3-horizontalmenu.html">TVL-HE </a>
+                                        <a href="../bedlp-hedCurr/tvl.php">TVL-HE </a>
                                     </li>
                                     <li>
-                                        <a href="index3-horizontalmenu.html">TVL-ICT </a>
+                                        <a href="../bedlp-hedCurr/tvl.php">TVL-ICT </a>
                                     </li>
                                 </ul>
                             </li>
-                            <li>
-                            <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-chain"></i>
+                            <li><a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-chain"></i>
                             <span>Data Entry</span></a>
                                 <ul class="collapse">
                                     <li>
-                                        <a href="index3-horizontalmenu.html">Add Students </a>
+                                        <a href="../bedlp-students/add.students.php">Add Students </a>
                                     </li>
                                     <li>
-                                        <a href="index3-horizontalmenu.html">Add Adviser </a>
+                                        <a href="../bedlp-master-key/add.adviser.php">Add Adviser </a>
                                     </li>
                                     <li>
                                         <a href="index3-horizontalmenu.html">Add Sections </a>
@@ -165,7 +162,8 @@
                                         </ul>
                                     </li>
                                 </ul>
-                            </li>';
+                            </li>
+                            ';
                             //   END OF REGISTRAR
 
                             // PRINCIPAL SIDE
@@ -173,7 +171,49 @@
                             echo '<li class="active">
                         <a href="javascript:void(0)" aria-expanded="true"><i
                                 class="ti-dashboard"></i><span>dashboard</span></a>
-                    </li>';
+                        </li>
+                        <li><a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-gear"></i>
+                                <span>Maintenance</span></a>
+                                    <ul class="collapse">
+                                        <li>
+                                            <a href="../bedlp-master-key/list.adviser.php">Adviser List </a>
+                                        </li>
+                                        <li>
+                                            <a href="../bedlp-master-key/list.teacher.php">Teacher List </a>
+                                        </li>   
+                                </ul>
+                            </li>
+                            <li><a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-chain"></i>
+                                <span>Data Entry</span></a>
+                                    <ul class="collapse">
+                                    <li>
+                                        <a href="../bedlp-master-key/add.adviser.php">Add Adviser </a>
+                                    </li>
+                                    <li>
+                                        <a href="../bedlp-master-key/add.teacher.php">Add Teacher </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-book"></i>
+                            <span>View Subjects</span></a>
+                                <ul class="collapse">
+                                    <li>
+                                        <a href="../bedlp-hedCurr/abm.php">ABM </a>
+                                    </li>
+                                    <li>
+                                        <a href="../bedlp-hedCurr/stem.php">STEM </a>
+                                    </li>
+                                    <li>
+                                        <a href="../bedlp-hedCurr/humss.php">HUMMS </a>
+                                    </li>
+                                    <li>
+                                        <a href="../bedlp-hedCurr/tvl.php">TVL-HE </a>
+                                    </li>
+                                    <li>
+                                        <a href="../bedlp-hedCurr/tvl.php">TVL-ICT </a>
+                                    </li>
+                                </ul>
+                            </li>';
                             // END OF PRINCIPAL
 
                             // ADMISSION SIDE
@@ -181,7 +221,75 @@
                             echo '<li class="active">
                         <a href="javascript:void(0)" aria-expanded="true"><i
                                 class="ti-dashboard"></i><span>dashboard</span></a>
-                    </li>';
+                        </li>
+                            <li><a href="#" aria-expanded="true">Enrollment</a>
+                                    <ul class="collapse">
+                                    <li>
+                                        <a href="index3-horizontalmenu.html">Pending Students </a>
+                                    </li>
+                                    <li>
+                                        <a href="index3-horizontalmenu.html">Online Inquiries </a>
+                                    </li>
+                                        </ul>
+                                    </li>
+                            <li><a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-gear"></i>
+                                <span>Maintenance</span></a>
+                                    <ul class="collapse">
+                                        <li>
+                                            <a href="../bedlp-students/list.students.php">Student List </a>
+                                        </li>   
+                                    </ul>
+                                </li>
+                            <li><a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-chain"></i>
+                                <span>Data Entry</span></a>
+                                    <ul class="collapse">
+                                    <li>
+                                        <a href="../bedlp-students/add.students.php">Add Students </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-newspaper-o"></i>
+                            <span>Class Schedule</span></a>
+                                <ul class="collapse">
+                                    <li>
+                                        <a href="index3-horizontalmenu.html">Senior </a>
+                                    </li>
+                                    <li>
+                                        <a href="index3-horizontalmenu.html">Primary - Junior </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-newspaper-o"></i>
+                            <span>Open/Offer Subjects</span></a>
+                                <ul class="collapse">
+                                    <li>
+                                        <a href="index3-horizontalmenu.html">Senior </a>
+                                    </li>
+                                    <li>
+                                        <a href="index3-horizontalmenu.html">Primary - Junior </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-book"></i>
+                            <span>View Subjects</span></a>
+                                <ul class="collapse">
+                                    <li>
+                                        <a href="../bedlp-hedCurr/abm.php">ABM </a>
+                                    </li>
+                                    <li>
+                                        <a href="../bedlp-hedCurr/stem.php">STEM </a>
+                                    </li>
+                                    <li>
+                                        <a href="../bedlp-hedCurr/humss.php">HUMMS </a>
+                                    </li>
+                                    <li>
+                                        <a href="../bedlp-hedCurr/tvl.php">TVL-HE </a>
+                                    </li>
+                                    <li>
+                                        <a href="../bedlp-hedCurr/tvl.php">TVL-ICT </a>
+                                    </li>
+                                </ul>
+                            </li>';
                             // END OF ADMISSION
 
                             // ACCOUNTING SIDE
@@ -189,7 +297,27 @@
                             echo '<li class="active">
                         <a href="javascript:void(0)" aria-expanded="true"><i
                                 class="ti-dashboard"></i><span>dashboard</span></a>
-                    </li>';
+                    </li>
+                        <li><a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-gear"></i>
+                                <span>Enrollment</span></a>
+                                    <ul class="collapse">
+                                        <li>
+                                            <a href="../bedlp-students/list.students.php">Confirm Students </a>
+                                        </li>   
+                                    </ul>
+                                </li>
+                                
+                        <li><a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-newspaper-o"></i>
+                            <span>Forms</span></a>
+                                <ul class="collapse">
+                                    <li>
+                                        <a href="index3-horizontalmenu.html">Pre-Enrollment </a>
+                                    </li>
+                                    <li>
+                                        <a href="index3-horizontalmenu.html">Reg Form </a>
+                                    </li>
+                                </ul>
+                            </li>';
                             // END OF ACCOUNTING
 
                             // TEACHER SIDE
@@ -205,7 +333,90 @@
                             echo '<li class="active">
                         <a href="javascript:void(0)" aria-expanded="true"><i
                                 class="ti-dashboard"></i><span>dashboard</span></a>
-                    </li>';
+                    </li>
+                            <li><a href="#" aria-expanded="true">Enrollment</a>
+                                    <ul class="collapse">
+                                    <li>
+                                        <a href="index3-horizontalmenu.html">Pending Students </a>
+                                    </li>
+                                    <li>
+                                        <a href="index3-horizontalmenu.html">Online Inquiries </a>
+                                    </li>
+                                        </ul>
+                                    </li>
+                            <li><a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-gear"></i>
+                            <span>Maintenance</span></a>
+                                <ul class="collapse">
+                                    <li>
+                                        <a href="../bedlp-students/list.students.php">Student List </a>
+                                    </li>
+                                    <li>
+                                        <a href="../bedlp-master-key/list.teacher.php">Teacher List </a>
+                                    </li>
+                                    <li><a href="#" aria-expanded="true">Subjects List</a>
+                                        <ul class="collapse">
+                                        <li>
+                                        <a href="index3-horizontalmenu.html">Senior </a>
+                                    </li>
+                                    <li>
+                                        <a href="index3-horizontalmenu.html">Primary - Junior </a>
+                                    </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-newspaper-o"></i>
+                            <span>Forms</span></a>
+                                <ul class="collapse">
+                                    <li>
+                                        <a href="index3-horizontalmenu.html">Pre-Enrollment </a>
+                                    </li>
+                                    <li>
+                                        <a href="index3-horizontalmenu.html">Reg Form </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-book"></i>
+                            <span>View Subjects</span></a>
+                                <ul class="collapse">
+                                    <li>
+                                        <a href="../bedlp-hedCurr/abm.php">ABM </a>
+                                    </li>
+                                    <li>
+                                        <a href="../bedlp-hedCurr/stem.php">STEM </a>
+                                    </li>
+                                    <li>
+                                        <a href="../bedlp-hedCurr/humss.php">HUMMS </a>
+                                    </li>
+                                    <li>
+                                        <a href="../bedlp-hedCurr/tvl.php">TVL-HE </a>
+                                    </li>
+                                    <li>
+                                        <a href="../bedlp-hedCurr/tvl.php">TVL-ICT </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-chain"></i>
+                            <span>Data Entry</span></a>
+                                <ul class="collapse">
+                                    <li>
+                                        <a href="../bedlp-students/add.students.php">Add Students </a>
+                                    </li>
+                                    <li>
+                                        <a href="../bedlp-master-key/add.teacher.php">Add Teacher </a>
+                                    </li>
+                                    <li><a href="#" aria-expanded="true">Add Subjects</a>
+                                        <ul class="collapse">
+                                        <li>
+                                        <a href="index3-horizontalmenu.html">Senior </a>
+                                    </li>
+                                    <li>
+                                        <a href="index3-horizontalmenu.html">Primary - Junior </a>
+                                    </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>';
                             // END OF ADVISER
 
                             // STUDENT SIDE
@@ -223,6 +434,9 @@
                   </ul>
               </nav>
           </div>
+      </div>
+      <div class="sidebar-footer">
+          <a href=""><i class="fas fa-gears"></i></a>
       </div>
   </div>
   <!-- sidebar menu area end -->

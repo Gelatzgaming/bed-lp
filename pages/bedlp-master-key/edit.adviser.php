@@ -1,234 +1,208 @@
-<?php
-require '../../includes/session.php';
-
-$ad_id = $_GET['ad_id'];
-if ($_SESSION['role'] == "Adviser") {
-    if ($ad_id != $_SESSION['ad_id']) {
-        header('location: ../bedlp-404/page404.php');
-    }
-}
-
-$_SESSION['get-adID'] = $ad_id;
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
 <!-- Head and links -->
 
 <head>
-    <title>Update Adviser | SFAC Las Pinas</title>
+    <title>Edit Adviser | SFAC Las Pinas</title>
     <?php include '../../includes/bedlp-header.php'; ?>
+    <?php
+    $get_adviser = $conn->query("SELECT * FROM tbl_adviser WHERE ad_id = '$_GET[ad_id]'");
+    $res_count = $get_adviser->num_rows;
+    if ($res_count == 0) {
+        // error code
+    }
+    $row = $get_adviser->fetch_array();
 
-<body class="hold-transition sidebar-mini layout-fixed">
-    <div class="wrapper">
+    ?>
 
-        <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-dark">
-            <!-- Left navbar links -->
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link disabled text-light">Edit Adviser</a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link disabled text-light">Basic Education</a>
-                </li>
-            </ul>
+<body>
+    <div class="page-container">
+
+        <!-- sidebar menu -->
+        <?php include '../../includes/bedlp-sidebar.php'; ?>
+
+        <div class="main-content">
+
             <?php include '../../includes/bedlp-navbar.php'; ?>
 
-            <!-- sidebar menu -->
-            <?php include '../../includes/bedlp-sidebar.php'; ?>
 
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper pt-4">
 
-                <!-- Smooth scroll button -->
-                <!-- <a href="#" id="scroll" style="display: none;"><span></span></a> -->
 
                 <!-- Main content -->
                 <section class="content">
                     <div class="container-fluid pl-5 pr-5 pb-3">
-                        <div class="card card-purple shadow-lg">
-                            <div class="card-header">
-                                <h3 class="card-title">Adviser Update Form</h3>
-                            </div>
-                            <!-- /.card-header -->
-                            <!-- form start -->
-                            <?php
-                            $get_userInfo = mysqli_query($conn, "SELECT * FROM tbl_adviser WHERE ad_id = '$ad_id'");
+                        <!-- main content pt.2 -->
+                        <div class="row">
+                            <!-- Textual inputs start -->
+                            <div class="col-12 mt-5">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="header-title">Edit Adviser</h4>
+                                        <p class="text-muted font-14 mb-4">Fill up the forms.
+                                        </p>
+                                        <form action="./userData/user.edit.adviser.php" method="POST"
+                                            enctype="multipart/form-data">
+                                            <?php
+                                            if (!empty($_SESSION['errors'])) {
+                                                echo ' <div class="alert-dismiss">
+                                                <div class="alert alert-danger alert-dismissible fade show"
+                                                    role="alert">
+                                                 ';
+                                                foreach ($_SESSION['errors'] as $error) {
+                                                    echo $error;
+                                                }
+                                                echo '
+                                                    <button type="button" class="close" data-dismiss="alert"
+                                                        aria-label="Close">
+                                                        <span class="fa fa-times"></span>
+                                                    </button>
+                                                </div>
+                                            </div>';
+                                                unset($_SESSION['errors']);
+                                            } elseif (!empty($_SESSION['success'])) {
+                                                echo ' <div class="alert-dismiss">
+                                                <div class="alert alert-success alert-dismissible fade show"
+                                                    role="alert">
+                                                    <strong>Successfully Added.</strong>
+                                                    <button type="button" class="close" data-dismiss="alert"
+                                                        aria-label="Close">
+                                                        <span class="fa fa-times"></span>
+                                                    </button>
+                                                </div>
+                                            </div> ';
+                                                unset($_SESSION['success']);
+                                            }
 
-                            while ($row = mysqli_fetch_array($get_userInfo)) { ?>
-                            <form action="userData/user.edit.adviser.php <?php echo '?ad_id=' . $ad_id; ?>"
-                                enctype="multipart/form-data" method="POST">
-                                <div class="card-body">
-                                    <div class="form-group mb-4">
 
 
-                                        <div class="custom-file mt-4">
-                                            <div class="img text-center">
-                                                <img class="img-bordered img-circle p-1 m-1"
-                                                    src="data:image/jpeg;base64, <?php echo base64_encode($row['img']); ?> "
-                                                    alt="User profile picture" style="width: 145px; height: 145px;">
-                                            </div>
+
+                                            ?>
 
 
+                                            <input class="form-control" type="text" name="ad_id"
+                                                value="<?php echo $row['ad_id']; ?>" hidden>
                                             <div class="row">
-                                                <div class="form-group mr-auto ml-auto col-md-4">
-                                                    <div class="input-group">
-                                                        <div class="custom-file">
-                                                            <input type="file" name="image" class="custom-file-input"
-                                                                id="customFile">
-                                                            <label class="custom-file-label" for="customFile">Choose
-                                                                image</label>
-                                                        </div><button type="submit" name="upload"
-                                                            class="btn bg-purple btn-default"><i
-                                                                class="fa fa-image"></i>
-                                                            Update</button>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="example-text-input" class="col-form-label">First
+                                                            Name</label>
+                                                        <input class="form-control" type="text" placeholder="First name"
+                                                            name="firstname" id="example-text-input"
+                                                            value="<?php
+                                                                                                                                                                            echo $row['ad_fname'];
+                                                                                                                                                                            ?>">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="example-search-input" class="col-form-label">Middle
+                                                            Name</label>
+                                                        <input class="form-control" type="text"
+                                                            placeholder="Middle Name" name="midname"
+                                                            id="example-search-input"
+                                                            value="<?php
+                                                                                                                                                                            echo $row['ad_mname'];
+                                                                                                                                                                            ?>">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="example-email-input" class="col-form-label">Last
+                                                            Name</label>
+                                                        <input class="form-control" type="text" placeholder="Last name"
+                                                            name="lastname" id="example-email-input"
+                                                            value="<?php
+                                                                                                                                                                        echo $row['ad_lname'];
+                                                                                                                                                                        ?>">
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="row mb-4 mt-5">
-                                        <div class="input-group col-sm-4 mb-2">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="fas fa-keyboard"></i></span>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="example-url-input"
+                                                            class="col-form-label">Email</label>
+                                                        <input class="form-control" type="email"
+                                                            placeholder="example123@gmail.com" name="email"
+                                                            id="example-url-input"
+                                                            value="<?php
+                                                                                                                                                                                echo $row['email'];
+                                                                                                                                                                                ?>">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="example-search-input"
+                                                            class="col-form-label">Username</label>
+                                                        <input class="form-control" type="text" placeholder="Username"
+                                                            name="username" id="example-search-input"
+                                                            value="<?php
+                                                                                                                                                                        echo $row['username'];
+                                                                                                                                                                        ?>">
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <input type="text" class="form-control" name="firstname"
-                                                placeholder="Firstname" value="<?php echo $row['ad_fname']; ?>">
-                                        </div>
-
-
-                                        <div class="input-group col-sm-4 mb-2">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="fas fa-keyboard"></i></span>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="inputPassword"
+                                                            class="col-form-label">Password</label>
+                                                        <input type="password" class="form-control" id="inputPassword"
+                                                            name="password" placeholder="Password">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="inputPassword" class="col-form-label">Confirm
+                                                            Password</label>
+                                                        <input type="password" class="form-control" id="inputPassword"
+                                                            name="password2" placeholder="Password">
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <input type="text" class="form-control" name="lastname"
-                                                placeholder="Lastname" value="<?php echo $row['ad_lname']; ?>">
-                                        </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label for="inputGroupFile01" class="col-form-label">Upload
+                                                            Profile</label>
+                                                        <div class="custom-file">
+                                                            <input type="file" class="form-control dropzone"
+                                                                name="prof_img" required>
 
-                                        <div class="input-group col-sm-4 mb-2">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="fas fa-keyboard"></i></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <input type="text" class="form-control" name="midname"
-                                                placeholder="Middlename" value="<?php echo $row['ad_mname']; ?>">
-                                        </div>
-                                    </div>
-
-
-                                    <div class="row mb-4">
-                                        <div class="input-group col-sm-6 mb-2">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                                            </div>
-                                            <input type="email" class="form-control" name="email"
-                                                placeholder="Email Address" value="<?php echo $row['email']; ?>"
-                                                required>
-                                        </div>
-                                    </div>
-
-                                    <?php } ?>
-
-                                    <div class="input-group col-sm-6 mb-2">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                        </div>
-                                        <input type="text" class="form-control" name="username" placeholder="Username"
-                                            value="<?php echo $row['username']; ?>" required>
-                                    </div>
-
-                                    <div class="row mb-4">
-                                        <div class="input-group col-sm-6 mb-2">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                                            </div>
-                                            <input type="password" class="form-control" name="password"
-                                                placeholder="Password">
-                                        </div>
-
-
+                                            <button type="submit" name="submit"
+                                                class="btn btn-primary mb-3 mt-3 float-right">Edit Adviser</button>
+                                        </form>
                                     </div>
                                 </div>
-                                <!-- /.card-body -->
+                            </div>
 
-                                <div class="card-footer">
-                                    <button type="submit" name="submit" class="btn bg-purple btn-default"><i
-                                            class="fa fa-user-check"></i> Update</button>
-                                </div>
-                            </form>
+
                         </div>
-                        <!-- /.card -->
+                    </div>
 
-                    </div><!-- /.container-fluid -->
                 </section>
-                <!-- /.content -->
+
             </div>
-            <!-- /.content-wrapper -->
+
+        </div>
+
+        <!-- Footer-->
+        <?php include '../../includes/bedlp-footer.php';  ?>
+
+    </div>
+    <!-- Script-->
+    <?php include '../../includes/bedlp-script.php';
 
 
-            <!-- Footer and script -->
-            <?php include '../../includes/bedlp-footer.php';
-
-            // alert 
-            if (isset($_SESSION['success-adEdit'])) {
-                echo "<script>
-    $(function() {
-        var Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 2000
-        }); 
-$('.swalDefaultSuccess') 
-Toast.fire({
-icon: 'success',
-title: 'Successfully Updated.'
-})
-}); 
-</script>";
-            } elseif (isset($_SESSION['no-img'])) {
-                echo "<script>
-            $(function() {
-                var Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 2000
-                });
-                $('.swalDefaultError')
-                Toast.fire({
-                    icon: 'error',
-                    title:  'Upload Failed. Please try again.'
-                });
-            });
-            </script>";
-            } elseif (isset($_SESSION['no-pwd'])) {
-                echo "<script>
-            $(function() {
-                var Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 2000
-                });
-                $('.swalDefaultError')
-                Toast.fire({
-                    icon: 'error',
-                    title:  'The Password field is required. Please try again.'
-                });
-            });
-            </script>";
-            }
-            unset($_SESSION['no-pwd']);
-            unset($_SESSION['success-adEdit']);
-            unset($_SESSION['no-img']);  ?>
+    unset($_SESSION['prev_data']);
+    ?>
 
 </body>
 
