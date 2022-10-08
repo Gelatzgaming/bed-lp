@@ -225,7 +225,7 @@
                             <li><a href="#" aria-expanded="true">Enrollment</a>
                                     <ul class="collapse">
                                     <li>
-                                        <a href="index3-horizontalmenu.html">Pending Students </a>
+                                        <a href="../bedlp-enrollment/list.pending.php">Pending Students </a>
                                     </li>
                                     <li>
                                         <a href="index3-horizontalmenu.html">Online Inquiries </a>

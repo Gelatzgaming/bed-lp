@@ -95,3 +95,11 @@ $getSchool_settings = mysqli_query($conn, "SELECT * FROM tbl_school_settings");
 $row_school = mysqli_fetch_array($getSchool_settings);
 $school_name = $row_school['school_name'];
 $school_address = $row_school['school_address'];
+
+// active acad and sem
+$get_acadYear = mysqli_query($conn, "SELECT * FROM tbl_active_acadyears");
+$get_sem = mysqli_query($conn, "SELECT * FROM tbl_active_semesters");
+$row_acadyear = mysqli_fetch_array($get_acadYear);
+$row_semester = mysqli_fetch_array($get_sem);
+$acadyear_id = $row_acadyear['ay_id'];
+$semester_id = $row_semester['semester_id'];
