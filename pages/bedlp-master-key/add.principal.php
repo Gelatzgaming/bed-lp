@@ -1,3 +1,5 @@
+<?php $par_page = "Data Entry";
+$cur_page = "Add Principal" ?>
 <!DOCTYPE html>
 <html lang="en">
 

@@ -1,3 +1,5 @@
+<?php $par_page = "Maintenance";
+$cur_page = "Edit Principal" ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,15 +8,7 @@
 <head>
     <title>Edit Principal | SFAC Las Pinas</title>
     <?php include '../../includes/bedlp-header.php'; ?>
-    <?php
-    $get_principal = $conn->query("SELECT * FROM tbl_principals WHERE prin_id = '$_GET[prin_id]'");
-    $res_count = $get_principal->num_rows;
-    if ($res_count == 0) {
-        // error code
-    }
-    $row = $get_principal->fetch_array();
 
-    ?>
 
 <body>
     <div class="page-container">
@@ -26,6 +20,49 @@
 
             <?php include '../../includes/bedlp-navbar.php'; ?>
 
+            <?php
+            if (!empty($_SESSION['errors'])) {
+                echo ' <div class="alert-dismiss">
+                                                <div class="alert alert-danger alert-dismissible fade show"
+                                                    role="alert">
+                                                 ';
+                foreach ($_SESSION['errors'] as $error) {
+                    echo $error;
+                }
+                echo '
+                                                    <button type="button" class="close" data-dismiss="alert"
+                                                        aria-label="Close">
+                                                        <span class="fa fa-times"></span>
+                                                    </button>
+                                                </div>
+                                            </div>';
+                unset($_SESSION['errors']);
+            } elseif (!empty($_SESSION['success'])) {
+                echo ' <div class="alert-dismiss">
+                                                <div class="alert alert-success alert-dismissible fade show"
+                                                    role="alert">
+                                                    <strong>Successfully Added.</strong>
+                                                    <button type="button" class="close" data-dismiss="alert"
+                                                        aria-label="Close">
+                                                        <span class="fa fa-times"></span>
+                                                    </button>
+                                                </div>
+                                            </div> ';
+                unset($_SESSION['success']);
+            } elseif (!empty($_SESSION['success-edit'])) {
+                echo '  <div class="alert alert-info alert-dismissible fade show py-3 text-center" role="alert">
+                                                <strong>Successfully Edited</strong>
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span class="fa fa-times"></span>
+                                                </button>
+                                            </div>';
+                unset($_SESSION['success-edit']);
+            }
+
+
+
+
+            ?>
 
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper pt-4">
@@ -45,43 +82,17 @@
                                         </p>
                                         <form action="./userData/user.edit.principal.php" method="POST"
                                             enctype="multipart/form-data">
+
+
                                             <?php
-                                            if (!empty($_SESSION['errors'])) {
-                                                echo ' <div class="alert-dismiss">
-                                                <div class="alert alert-danger alert-dismissible fade show"
-                                                    role="alert">
-                                                 ';
-                                                foreach ($_SESSION['errors'] as $error) {
-                                                    echo $error;
-                                                }
-                                                echo '
-                                                    <button type="button" class="close" data-dismiss="alert"
-                                                        aria-label="Close">
-                                                        <span class="fa fa-times"></span>
-                                                    </button>
-                                                </div>
-                                            </div>';
-                                                unset($_SESSION['errors']);
-                                            } elseif (!empty($_SESSION['success'])) {
-                                                echo ' <div class="alert-dismiss">
-                                                <div class="alert alert-success alert-dismissible fade show"
-                                                    role="alert">
-                                                    <strong>Successfully Added.</strong>
-                                                    <button type="button" class="close" data-dismiss="alert"
-                                                        aria-label="Close">
-                                                        <span class="fa fa-times"></span>
-                                                    </button>
-                                                </div>
-                                            </div> ';
-                                                unset($_SESSION['success']);
+                                            $get_principal = $conn->query("SELECT * FROM tbl_principals WHERE prin_id = '$_GET[prin_id]'");
+                                            $res_count = $get_principal->num_rows;
+                                            if ($res_count == 0) {
+                                                // error code
                                             }
-
-
-
+                                            $row = $get_principal->fetch_array();
 
                                             ?>
-
-
                                             <input class="form-control" type="text" name="prin_id"
                                                 value="<?php echo $row['prin_id']; ?>" hidden>
                                             <div class="row">

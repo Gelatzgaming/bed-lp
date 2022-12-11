@@ -1,3 +1,5 @@
+<?php $par_page = "Maintenance";
+$cur_page = "Principal List" ?>
 <!DOCTYPE html>
 <html lang="en">
 

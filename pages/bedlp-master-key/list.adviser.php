@@ -1,3 +1,6 @@
+<?php $par_page = "Maintenance";
+$cur_page = "Adviser List" ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -125,6 +128,7 @@
         <?php include '../../includes/bedlp-footer.php';  ?>
 
     </div>
+
     <?php include '../../includes/bedlp-script.php'; ?>
     <script>
     $("#alertDel").delay(2000).fadeOut();

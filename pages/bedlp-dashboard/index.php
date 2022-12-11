@@ -1,3 +1,5 @@
+<?php $par_page = "Dashboard";
+$cur_page = "Dashboard" ?>
 <?php
 // head
 include '../../includes/bedlp-header.php';

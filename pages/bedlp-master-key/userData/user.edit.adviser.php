@@ -39,7 +39,7 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == "POST") {
         $image = (!empty($_FILES['prof_img']['tmp_name'])) ? addslashes(file_get_contents($_FILES['prof_img']['tmp_name'])) : null;
         $hashpwd = password_hash($password, PASSWORD_BCRYPT);
         $insertUser = mysqli_query($conn, "UPDATE tbl_adviser SET img = '$image', ad_fname = '$firstname', ad_lname = '$lastname', ad_mname = '$midname', email = '$email', username = '$username', password = '$hashpwd' WHERE ad_id = '$ad_id'") or die(mysqli_error($conn));
-        $_SESSION['success'] = true;
+        $_SESSION['success-edit'] = true;
         header('location: ../edit.adviser.php?ad_id=' . $ad_id);
     }
 }

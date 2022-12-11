@@ -81,7 +81,7 @@
                             <span>Enrollment</span></a>
                                 <ul class="collapse">
                                     <li>
-                                        <a href="index3-horizontalmenu.html">Confirm Students </a>
+                                        <a href="../bedlp-enrollment/list.pending.php">Confirm Students </a>
                                     </li>
                                 </ul>
                             </li>
@@ -98,23 +98,32 @@
                                     <li><a href="#" aria-expanded="true">Subjects List</a>
                                         <ul class="collapse">
                                         <li>
-                                        <a href="index3-horizontalmenu.html">Senior </a>
+                                        <a href="../bedlp-subjects/list.sub.senior.php">Senior </a>
                                     </li>
                                     <li>
-                                        <a href="index3-horizontalmenu.html">Primary - Junior </a>
+                                        <a href="../bedlp-subjects/list.sub.k-10.php">Primary - Junior </a>
                                     </li>
                                         </ul>
                                     </li>
-                                </ul>
+                                    <li>
+                                        <a href="../bedlp-date/add.date.php">Academic Year </a>
+                                    </li>
+                                    <li>
+                                        <a href="../bedlp-semester/add.sem.php">Semester</a>
+                                    </li>
+                                    <li>
+                                        <a href="../bedlp-master-key/edit.registrar.php?reg_id= ' . $reg_id . '">Edit Profile </a>
+                                    </li>
+                                </ul>      
                             </li>
                             <li><a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-newspaper-o"></i>
                             <span>Forms</span></a>
                                 <ul class="collapse">
                                     <li>
-                                        <a href="index3-horizontalmenu.html">Pre-Enrollment </a>
+                                        <a href="../bedlp-forms/pre-en-plain.php">Pre-Enrollment </a>
                                     </li>
                                     <li>
-                                        <a href="index3-horizontalmenu.html">Reg Form </a>
+                                        <a href="../bedlp-forms/allformsnodata.php">Reg Form </a>
                                     </li>
                                 </ul>
                             </li>
@@ -148,16 +157,14 @@
                                     <li>
                                         <a href="../bedlp-master-key/add.adviser.php">Add Adviser </a>
                                     </li>
-                                    <li>
-                                        <a href="index3-horizontalmenu.html">Add Sections </a>
-                                    </li>
+                                    
                                     <li><a href="#" aria-expanded="true">Add Subjects</a>
                                         <ul class="collapse">
                                         <li>
-                                        <a href="index3-horizontalmenu.html">Senior </a>
+                                        <a href="../bedlp-subjects/add.sub.senior.php">Senior </a>
                                     </li>
                                     <li>
-                                        <a href="index3-horizontalmenu.html">Primary - Junior </a>
+                                        <a href="../bedlp-subjects/add.sub.k-10.php">Primary - Junior </a>
                                     </li>
                                         </ul>
                                     </li>
@@ -180,7 +187,10 @@
                                         </li>
                                         <li>
                                             <a href="../bedlp-master-key/list.teacher.php">Teacher List </a>
-                                        </li>   
+                                        </li>
+                                        <li>
+                                        <a href="../bedlp-master-key/edit.principal.php?prin_id= ' . $prin_id . '">Edit Profile </a>
+                                    </li>   
                                 </ul>
                             </li>
                             <li><a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-chain"></i>
@@ -222,7 +232,8 @@
                         <a href="javascript:void(0)" aria-expanded="true"><i
                                 class="ti-dashboard"></i><span>dashboard</span></a>
                         </li>
-                            <li><a href="#" aria-expanded="true">Enrollment</a>
+                            <li><a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-line-chart"></i>
+                            <span>Enrollment</span></a>
                                     <ul class="collapse">
                                     <li>
                                         <a href="../bedlp-enrollment/list.pending.php">Pending Students </a>
@@ -237,7 +248,10 @@
                                     <ul class="collapse">
                                         <li>
                                             <a href="../bedlp-students/list.students.php">Student List </a>
-                                        </li>   
+                                        </li>
+                                        <li>
+                                        <a href="../bedlp-master-key/edit.admission.php?admission_id= ' . $admission_id . '">Edit Profile </a>
+                                    </li>   
                                     </ul>
                                 </li>
                             <li><a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-chain"></i>
@@ -252,10 +266,10 @@
                             <span>Class Schedule</span></a>
                                 <ul class="collapse">
                                     <li>
-                                        <a href="index3-horizontalmenu.html">Senior </a>
+                                        <a href="../bedlp-schedules/list.sched.senior.php">Senior </a>
                                     </li>
                                     <li>
-                                        <a href="index3-horizontalmenu.html">Primary - Junior </a>
+                                        <a href="../bedlp-schedules/list.sched.k-10.php">Primary - Junior </a>
                                     </li>
                                 </ul>
                             </li>
@@ -263,10 +277,10 @@
                             <span>Open/Offer Subjects</span></a>
                                 <ul class="collapse">
                                     <li>
-                                        <a href="index3-horizontalmenu.html">Senior </a>
+                                        <a href="../bedlp-subjects/list.offerSub.senior.php">Senior </a>
                                     </li>
                                     <li>
-                                        <a href="index3-horizontalmenu.html">Primary - Junior </a>
+                                        <a href="../bedlp-subjects/list.offerSub.k-10.php">Primary - Junior </a>
                                     </li>
                                 </ul>
                             </li>
@@ -302,8 +316,12 @@
                                 <span>Enrollment</span></a>
                                     <ul class="collapse">
                                         <li>
-                                            <a href="../bedlp-students/list.students.php">Confirm Students </a>
-                                        </li>   
+                                            <a href="../bedlp-enrollment/list.pending.php">Confirm Students </a>
+                                            
+                                        </li>
+                                        <li>
+                                        <a href="../bedlp-master-key/edit.accounting.php?acc_id= ' . $acc_id . '">Edit Profile </a>
+                                    </li>   
                                     </ul>
                                 </li>
                                 
@@ -311,10 +329,10 @@
                             <span>Forms</span></a>
                                 <ul class="collapse">
                                     <li>
-                                        <a href="index3-horizontalmenu.html">Pre-Enrollment </a>
+                                        <a href="../bedlp-forms/pre-en-plain.php">Pre-Enrollment </a>
                                     </li>
                                     <li>
-                                        <a href="index3-horizontalmenu.html">Reg Form </a>
+                                        <a href="../bedlp-forms/allformsnodata.php">Reg Form </a>
                                     </li>
                                 </ul>
                             </li>';
@@ -325,7 +343,17 @@
                             echo '<li class="active">
                         <a href="javascript:void(0)" aria-expanded="true"><i
                                 class="ti-dashboard"></i><span>dashboard</span></a>
-                    </li>';
+                    </li>
+                    
+                    <li><a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-gear"></i>
+                                <span>Maintenance</span></a>
+                                    <ul class="collapse">
+                                        
+                                        <li>
+                                        <a href="../bedlp-master-key/edit.teacher.php?teacher_id= ' . $teacher_id . '">Edit Profile </a>
+                                    </li>   
+                                </ul>
+                            </li>';
                             // END OF TEACHER
 
                             // ADVISER SIDE
@@ -337,7 +365,7 @@
                             <li><a href="#" aria-expanded="true">Enrollment</a>
                                     <ul class="collapse">
                                     <li>
-                                        <a href="index3-horizontalmenu.html">Pending Students </a>
+                                        <a href="../bedlp-enrollment/list.pending.php">Pending Students </a>
                                     </li>
                                     <li>
                                         <a href="index3-horizontalmenu.html">Online Inquiries </a>
@@ -363,16 +391,19 @@
                                     </li>
                                         </ul>
                                     </li>
+                                    <li>
+                                        <a href="../bedlp-master-key/edit.adviser.php?ad_id= ' . $ad_id . '">Edit Profile </a>
+                                    </li>
                                 </ul>
                             </li>
                             <li><a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-newspaper-o"></i>
                             <span>Forms</span></a>
                                 <ul class="collapse">
                                     <li>
-                                        <a href="index3-horizontalmenu.html">Pre-Enrollment </a>
+                                        <a href="../bedlp-forms/pre-en-plain.php">Pre-Enrollment </a>
                                     </li>
                                     <li>
-                                        <a href="index3-horizontalmenu.html">Reg Form </a>
+                                        <a href="../bedlp-forms/allformsnodata.php">Reg Form </a>
                                     </li>
                                 </ul>
                             </li>
@@ -424,7 +455,34 @@
                             echo '<li class="active">
                         <a href="javascript:void(0)" aria-expanded="true"><i
                                 class="ti-dashboard"></i><span>dashboard</span></a>
-                    </li>';
+                                </li>
+                            
+
+                            <li><a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-gear"></i>
+                                <span>Maintenance</span></a>
+                                    <ul class="collapse">
+                                        
+                                    <li>
+                                    <a href="../bedlp-students/edit.infoStud.php"> Personal Info. </a>
+                                </li>
+                                <li>
+                                        <a href="../bedlp-subjects/list.enrolledSub.senior.php">Enrollment Info. </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li><a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-gear"></i>
+                                <span>User Management</span></a>
+                                    <ul class="collapse">
+                                        
+                                        <li>
+                                        <a href="../bedlp-students/edit.students.php?stud_id= ' . $stud_id . '">Edit Profile </a>
+                                    </li>   
+                                </ul>
+                            </li>
+                                    
+                                    
+                   ';
                             // END OF STUDENT
                         }
 
@@ -434,9 +492,6 @@
                   </ul>
               </nav>
           </div>
-      </div>
-      <div class="sidebar-footer">
-          <a href=""><i class="fas fa-gears"></i></a>
       </div>
   </div>
   <!-- sidebar menu area end -->

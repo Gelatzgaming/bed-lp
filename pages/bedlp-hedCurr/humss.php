@@ -1,5 +1,5 @@
 <?php
-require('../bed-fpdf/fpdf.php');
+require('../bedlp-fpdf/fpdf.php');
 
 
 
@@ -17,7 +17,7 @@ $pdf->SetMargins(10, 10, 10);
 $pdf->AddPage();
 
 // Logo(x axis, y axis, height, width)
-$pdf->Image('../../../assets/img/logo.png', 50, 5, 15, 15);
+$pdf->Image('../../assets/img/logo.png', 50, 5, 15, 15);
 // text color
 $pdf->SetTextColor(255, 0, 0);
 // font(font type,style,font size)

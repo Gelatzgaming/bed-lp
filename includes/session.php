@@ -74,7 +74,7 @@ if (!empty($_SESSION['role'])) {
         }
     } elseif ($_SESSION['role'] == "Student") {
         $stud_id = $_SESSION['stud_id'];
-        $user = $conn->query("SELECT * FROM tbl_students WHERE student_id = '$student_id'");
+        $user = $conn->query("SELECT * FROM tbl_students WHERE student_id = '$stud_id'");
         $row_user = $user->fetch_array();
         $user_fullname = $row_user['student_fname'] . " " . $row_user['student_lname'];
         $user_img = $row_user['img'];
@@ -97,9 +97,12 @@ $school_name = $row_school['school_name'];
 $school_address = $row_school['school_address'];
 
 // active acad and sem
-$get_acadYear = mysqli_query($conn, "SELECT * FROM tbl_active_acadyears");
-$get_sem = mysqli_query($conn, "SELECT * FROM tbl_active_semesters");
+
+$get_acadYear = mysqli_query($conn, "SELECT * FROM tbl_active_acadyears LEFT JOIN tbl_acadyears USING(ay_id)");
+$get_sem = mysqli_query($conn, "SELECT * FROM tbl_active_semesters LEFT JOIN tbl_semesters USING (semester_id)");
 $row_acadyear = mysqli_fetch_array($get_acadYear);
 $row_semester = mysqli_fetch_array($get_sem);
 $acadyear_id = $row_acadyear['ay_id'];
+$act_acad = $row_acadyear['academic_year'];
 $semester_id = $row_semester['semester_id'];
+$act_sem = $row_semester['semester'];

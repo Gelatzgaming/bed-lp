@@ -17,6 +17,25 @@
         <!-- profile info & task notification -->
         <div class="col-md-6 col-sm-4 clearfix">
             <ul class="notification-area pull-right">
+                <li>
+
+                    <?php $get_acadyear = mysqli_query($conn, "SELECT * FROM tbl_active_acadyears LEFT JOIN tbl_acadyears ON tbl_acadyears.ay_id = tbl_active_acadyears.ay_id");
+                    while ($row = mysqli_fetch_array($get_acadyear)) {
+                        $get_ay = $row['academic_year'];
+                    }
+
+                    $get_sem = mysqli_query($conn, "SELECT * FROM tbl_active_semesters LEFT JOIN tbl_semesters ON tbl_semesters.semester_id = tbl_active_semesters.semester_id");
+                    while ($row = mysqli_fetch_array($get_sem)) {
+                        $get_semester = $row['semester'];
+                    } ?>
+
+                    <h6 class="info-box-text"><i class="fa fa-bookmark"></i> A.Y <?php echo $get_ay; ?>
+                        | <?php echo $get_semester; ?>
+                    </h6>
+
+
+
+                </li>
                 <li id="full-view"><i class="ti-fullscreen"></i></li>
                 <li id="full-view-exit"><i class="ti-zoom-out"></i></li>
                 <li class="dropdown">
@@ -174,6 +193,8 @@
             <div class="breadcrumbs-area clearfix">
                 <h4 class="page-title pull-left"><?php echo $par_page ?></h4>
                 <ul class="breadcrumbs pull-left">
+                    <li><a href="../bedlp-dashboard/index.php"> Home </a></li>
+
                     <li><span><?php echo $cur_page ?></span></li>
                 </ul>
             </div>

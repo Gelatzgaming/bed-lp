@@ -1,3 +1,6 @@
+<?php $par_page = "Maintenance";
+$cur_page = "Edit Registrar" ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,15 +9,7 @@
 <head>
     <title>Edit Registrar | SFAC Las Pinas</title>
     <?php include '../../includes/bedlp-header.php'; ?>
-    <?php
-    $get_registrar = $conn->query("SELECT * FROM tbl_registrars WHERE reg_id = '$_GET[reg_id]'");
-    $res_count = $get_registrar->num_rows;
-    if ($res_count == 0) {
-        // error code
-    }
-    $row = $get_registrar->fetch_array();
 
-    ?>
 
 <body>
     <div class="page-container">
@@ -26,6 +21,49 @@
 
             <?php include '../../includes/bedlp-navbar.php'; ?>
 
+            <?php
+            if (!empty($_SESSION['errors'])) {
+                echo ' <div class="alert-dismiss">
+                                                <div class="alert alert-danger alert-dismissible fade show"
+                                                    role="alert">
+                                                 ';
+                foreach ($_SESSION['errors'] as $error) {
+                    echo $error;
+                }
+                echo '
+                                                    <button type="button" class="close" data-dismiss="alert"
+                                                        aria-label="Close">
+                                                        <span class="fa fa-times"></span>
+                                                    </button>
+                                                </div>
+                                            </div>';
+                unset($_SESSION['errors']);
+            } elseif (!empty($_SESSION['success'])) {
+                echo ' <div class="alert-dismiss">
+                                                <div class="alert alert-success alert-dismissible fade show"
+                                                    role="alert">
+                                                    <strong>Successfully Added.</strong>
+                                                    <button type="button" class="close" data-dismiss="alert"
+                                                        aria-label="Close">
+                                                        <span class="fa fa-times"></span>
+                                                    </button>
+                                                </div>
+                                            </div> ';
+                unset($_SESSION['success']);
+            } elseif (!empty($_SESSION['success-edit'])) {
+                echo '  <div class="alert alert-info alert-dismissible fade show py-3 text-center" role="alert">
+                                                <strong>Successfully Edited</strong>
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span class="fa fa-times"></span>
+                                                </button>
+                                            </div>';
+                unset($_SESSION['success-edit']);
+            }
+
+
+
+
+            ?>
 
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper pt-4">
@@ -45,43 +83,17 @@
                                         </p>
                                         <form action="./userData/user.edit.registrar.php" method="POST"
                                             enctype="multipart/form-data">
+
+
                                             <?php
-                                            if (!empty($_SESSION['errors'])) {
-                                                echo ' <div class="alert-dismiss">
-                                                <div class="alert alert-danger alert-dismissible fade show"
-                                                    role="alert">
-                                                 ';
-                                                foreach ($_SESSION['errors'] as $error) {
-                                                    echo $error;
-                                                }
-                                                echo '
-                                                    <button type="button" class="close" data-dismiss="alert"
-                                                        aria-label="Close">
-                                                        <span class="fa fa-times"></span>
-                                                    </button>
-                                                </div>
-                                            </div>';
-                                                unset($_SESSION['errors']);
-                                            } elseif (!empty($_SESSION['success'])) {
-                                                echo ' <div class="alert-dismiss">
-                                                <div class="alert alert-success alert-dismissible fade show"
-                                                    role="alert">
-                                                    <strong>Successfully Added.</strong>
-                                                    <button type="button" class="close" data-dismiss="alert"
-                                                        aria-label="Close">
-                                                        <span class="fa fa-times"></span>
-                                                    </button>
-                                                </div>
-                                            </div> ';
-                                                unset($_SESSION['success']);
+                                            $get_registrar = $conn->query("SELECT * FROM tbl_registrars WHERE reg_id = '$_GET[reg_id]'");
+                                            $res_count = $get_registrar->num_rows;
+                                            if ($res_count == 0) {
+                                                // error code
                                             }
-
-
-
+                                            $row = $get_registrar->fetch_array();
 
                                             ?>
-
-
                                             <input class="form-control" type="text" name="reg_id"
                                                 value="<?php echo $row['reg_id']; ?>" hidden>
                                             <div class="row">
@@ -91,9 +103,7 @@
                                                             Name</label>
                                                         <input class="form-control" type="text" placeholder="First name"
                                                             name="firstname" id="example-text-input"
-                                                            value="<?php
-                                                                                                                                                                            echo $row['reg_fname'];
-                                                                                                                                                                            ?>">
+                                                            value="<?php echo $row['reg_fname']; ?>">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
@@ -103,9 +113,7 @@
                                                         <input class="form-control" type="text"
                                                             placeholder="Middle Name" name="midname"
                                                             id="example-search-input"
-                                                            value="<?php
-                                                                                                                                                                            echo $row['reg_mname'];
-                                                                                                                                                                            ?>">
+                                                            value="<?php echo $row['reg_mname']; ?>">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
@@ -114,9 +122,7 @@
                                                             Name</label>
                                                         <input class="form-control" type="text" placeholder="Last name"
                                                             name="lastname" id="example-email-input"
-                                                            value="<?php
-                                                                                                                                                                        echo $row['reg_lname'];
-                                                                                                                                                                        ?>">
+                                                            value="<?php echo $row['reg_lname']; ?>">
                                                     </div>
                                                 </div>
                                             </div>
@@ -127,10 +133,7 @@
                                                             class="col-form-label">Email</label>
                                                         <input class="form-control" type="email"
                                                             placeholder="example123@gmail.com" name="email"
-                                                            id="example-url-input"
-                                                            value="<?php
-                                                                                                                                                                                echo $row['email'];
-                                                                                                                                                                                ?>">
+                                                            id="example-url-input" value="<?php echo $row['email']; ?>">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -139,9 +142,7 @@
                                                             class="col-form-label">Username</label>
                                                         <input class="form-control" type="text" placeholder="Username"
                                                             name="username" id="example-search-input"
-                                                            value="<?php
-                                                                                                                                                                        echo $row['username'];
-                                                                                                                                                                        ?>">
+                                                            value="<?php echo $row['username']; ?>">
                                                     </div>
                                                 </div>
                                             </div>

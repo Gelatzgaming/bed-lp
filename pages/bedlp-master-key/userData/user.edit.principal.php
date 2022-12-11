@@ -39,7 +39,7 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == "POST") {
         $image = (!empty($_FILES['prof_img']['tmp_name'])) ? addslashes(file_get_contents($_FILES['prof_img']['tmp_name'])) : null;
         $hashpwd = password_hash($password, PASSWORD_BCRYPT);
         $insertUser = mysqli_query($conn, "UPDATE tbl_principals SET img = '$image', prin_fname = '$firstname', prin_lname = '$lastname', prin_mname = '$midname', email = '$email', username = '$username', password = '$hashpwd' WHERE prin_id = '$prin_id'") or die(mysqli_error($conn));
-        $_SESSION['success'] = true;
+        $_SESSION['success-edit'] = true;
         header('location: ../edit.principal.php?prin_id=' . $prin_id);
     }
 }

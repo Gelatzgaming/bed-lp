@@ -1,3 +1,6 @@
+<?php $par_page = "Maintenance";
+$cur_page = "Edit Students" ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,15 +9,6 @@
 <head>
     <title>Edit Students | SFAC Las Pinas</title>
     <?php include '../../includes/bedlp-header.php'; ?>
-    <?php
-    $get_student = $conn->query("SELECT * FROM tbl_students WHERE student_id = '$_GET[student_id]'");
-    $res_count = $get_student->num_rows;
-    if ($res_count == 0) {
-        // error code
-    }
-    $row = $get_student->fetch_array();
-
-    ?>
 
 <body>
     <div class="page-container">
@@ -26,6 +20,50 @@
 
             <?php include '../../includes/bedlp-navbar.php'; ?>
 
+            <?php
+            if (!empty($_SESSION['errors'])) {
+                echo ' <div class="alert-dismiss">
+                                                <div class="alert alert-danger alert-dismissible fade show"
+                                                    role="alert">
+                                                 ';
+                foreach ($_SESSION['errors'] as $error) {
+                    echo $error;
+                }
+                echo '
+                                                    <button type="button" class="close" data-dismiss="alert"
+                                                        aria-label="Close">
+                                                        <span class="fa fa-times"></span>
+                                                    </button>
+                                                </div>
+                                            </div>';
+                unset($_SESSION['errors']);
+            } elseif (!empty($_SESSION['success'])) {
+                echo ' <div class="alert-dismiss">
+                                                <div class="alert alert-success alert-dismissible fade show"
+                                                    role="alert">
+                                                    <strong>Successfully Added.</strong>
+                                                    <button type="button" class="close" data-dismiss="alert"
+                                                        aria-label="Close">
+                                                        <span class="fa fa-times"></span>
+                                                    </button>
+                                                </div>
+                                            </div> ';
+                unset($_SESSION['success']);
+            }
+            if (!empty($_SESSION['success-edit'])) {
+                echo '  <div class="alert alert-info alert-dismissible fade show py-3 text-center" role="alert">
+                <strong>Successfully Edited</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span class="fa fa-times"></span>
+                </button>
+            </div>';
+                unset($_SESSION['success-edit']);
+            }
+
+
+
+
+            ?>
 
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper pt-4">
@@ -45,39 +83,15 @@
                                         </p>
                                         <form action="./userData/user.edit.students.php" method="POST"
                                             enctype="multipart/form-data">
+
+
                                             <?php
-                                            if (!empty($_SESSION['errors'])) {
-                                                echo ' <div class="alert-dismiss">
-                                                <div class="alert alert-danger alert-dismissible fade show"
-                                                    role="alert">
-                                                 ';
-                                                foreach ($_SESSION['errors'] as $error) {
-                                                    echo $error;
-                                                }
-                                                echo '
-                                                    <button type="button" class="close" data-dismiss="alert"
-                                                        aria-label="Close">
-                                                        <span class="fa fa-times"></span>
-                                                    </button>
-                                                </div>
-                                            </div>';
-                                                unset($_SESSION['errors']);
-                                            } elseif (!empty($_SESSION['success'])) {
-                                                echo ' <div class="alert-dismiss">
-                                                <div class="alert alert-success alert-dismissible fade show"
-                                                    role="alert">
-                                                    <strong>Successfully Added.</strong>
-                                                    <button type="button" class="close" data-dismiss="alert"
-                                                        aria-label="Close">
-                                                        <span class="fa fa-times"></span>
-                                                    </button>
-                                                </div>
-                                            </div> ';
-                                                unset($_SESSION['success']);
+                                            $get_student = $conn->query("SELECT * FROM tbl_students WHERE student_id = '$_GET[student_id]'");
+                                            $res_count = $get_student->num_rows;
+                                            if ($res_count == 0) {
+                                                // error code
                                             }
-
-
-
+                                            $row = $get_student->fetch_array();
 
                                             ?>
 
@@ -92,7 +106,7 @@
                                                         <input class="form-control" type="text" placeholder="First name"
                                                             name="firstname" id="example-text-input"
                                                             value="<?php
-                                                                                                                                                                            echo $row['reg_fname'];
+                                                                                                                                                                            echo $row['student_fname'];
                                                                                                                                                                             ?>">
                                                     </div>
                                                 </div>
@@ -104,7 +118,7 @@
                                                             placeholder="Middle Name" name="midname"
                                                             id="example-search-input"
                                                             value="<?php
-                                                                                                                                                                            echo $row['reg_mname'];
+                                                                                                                                                                            echo $row['student_mname'];
                                                                                                                                                                             ?>">
                                                     </div>
                                                 </div>
@@ -115,7 +129,7 @@
                                                         <input class="form-control" type="text" placeholder="Last name"
                                                             name="lastname" id="example-email-input"
                                                             value="<?php
-                                                                                                                                                                        echo $row['reg_lname'];
+                                                                                                                                                                        echo $row['student_lname'];
                                                                                                                                                                         ?>">
                                                     </div>
                                                 </div>
@@ -177,7 +191,7 @@
                                                 </div>
                                             </div>
                                             <button type="submit" name="submit"
-                                                class="btn btn-primary mb-3 mt-3 float-right">Edit Registrar</button>
+                                                class="btn btn-primary mb-3 mt-3 float-right">Edit Student</button>
                                         </form>
                                     </div>
                                 </div>

@@ -1,3 +1,5 @@
+<?php $par_page = "Data Entry";
+$cur_page = "Add Adviser" ?>
 <!DOCTYPE html>
 <html lang="en">
 
