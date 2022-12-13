@@ -161,7 +161,7 @@ if (isset($_GET['stem'])) {
                                                     <td><?php echo $row['pre_requisites']; ?></td>
                                                     <td><?php echo $row['grade_level']; ?></td>
                                                     <td><?php echo $row['semester']; ?></td>
-                                                    <td><a href="edit.sched.senior.php<?php echo '?sen_id=' . $sen_id . '&sched_id=' . $sched_id; ?>"
+                                                    <td><a href="edit.sched.senior.php<?php echo '?subject_id=' . $sen_id . '&schedule_id=' . $sched_id; ?>"
                                                             type="button" class="btn btn-info m-1"><i
                                                                 class="fa fa-edit"></i>
                                                             Update
@@ -169,8 +169,9 @@ if (isset($_GET['stem'])) {
 
                                                         <button type="button" class="btn btn-danger mx-1"
                                                             data-toggle="modal"
-                                                            data-target="#delete<?php echo $row['sen_id'] ?>"><i
+                                                            data-target="#delete<?php echo $row['subject_id'] ?>"><i
                                                                 class="fa fa-trash"></i> Delete</button>
+
                                                     </td>
                                                 </tr>
                                                 <!-- Delete modal start -->
@@ -190,7 +191,7 @@ if (isset($_GET['stem'])) {
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary"
                                                                     data-dismiss="modal">Cancel</button>
-                                                                <a href="userData/ctrl.del.sched.senior.php?sen_id=<?php echo $row['sen_id']; ?>"
+                                                                <a href="userData/ctrl.del.sched.senior.php<?php echo '?schedule_id=' . $sched_id . '&str_n=' . $str_name; ?>"
                                                                     class="btn btn-danger">Delete</a>
                                                             </div>
                                                         </div>

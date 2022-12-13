@@ -1,7 +1,7 @@
 <?php
 require '../../../includes/conn.php';
 
-$sched_id = $_GET['sched_id'];
+$sched_id = $_GET['schedule_id'];
 $grd_lvl = $_GET['grd_lvl'];
 
 mysqli_query($conn, "DELETE FROM tbl_schedules WHERE schedule_id = '$sched_id'") or die(mysqli_error($conn));

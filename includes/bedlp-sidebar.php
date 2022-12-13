@@ -16,7 +16,7 @@
                       <!-- MASTER KEY -->
                       <?php if ($_SESSION['role'] == "Master Key") {
                             echo '<li class="active">
-                          <a href="javascript:void(0)" aria-expanded="true"><i
+                          <a href="../bedlp-dashboard/index.php" aria-expanded="true"><i
                                   class="ti-dashboard"></i><span>dashboard</span></a>
                         </li>
                       
@@ -74,7 +74,7 @@
                             // REGISTRAR SIDE
                         } elseif ($_SESSION['role'] == "Registrar") {
                             echo '<li class="active">
-                      <a href="javascript:void(0)" aria-expanded="true"><i
+                      <a href="../bedlp-dashboard/index.php" aria-expanded="true"><i
                               class="ti-dashboard"></i><span>dashboard</span></a>
                   </li>
                         <li><a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-line-chart"></i>
@@ -144,7 +144,7 @@
                                         <a href="../bedlp-hedCurr/tvl.php">TVL-HE </a>
                                     </li>
                                     <li>
-                                        <a href="../bedlp-hedCurr/tvl.php">TVL-ICT </a>
+                                        <a href="../bedlp-hedCurr/gas.php">GAS </a>
                                     </li>
                                 </ul>
                             </li>
@@ -176,7 +176,7 @@
                             // PRINCIPAL SIDE
                         } elseif ($_SESSION['role'] == "Principal") {
                             echo '<li class="active">
-                        <a href="javascript:void(0)" aria-expanded="true"><i
+                        <a href="../bedlp-dashboard/index.php" aria-expanded="true"><i
                                 class="ti-dashboard"></i><span>dashboard</span></a>
                         </li>
                         <li><a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-gear"></i>
@@ -201,64 +201,6 @@
                                     </li>
                                     <li>
                                         <a href="../bedlp-master-key/add.teacher.php">Add Teacher </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-book"></i>
-                            <span>View Subjects</span></a>
-                                <ul class="collapse">
-                                    <li>
-                                        <a href="../bedlp-hedCurr/abm.php">ABM </a>
-                                    </li>
-                                    <li>
-                                        <a href="../bedlp-hedCurr/stem.php">STEM </a>
-                                    </li>
-                                    <li>
-                                        <a href="../bedlp-hedCurr/humss.php">HUMMS </a>
-                                    </li>
-                                    <li>
-                                        <a href="../bedlp-hedCurr/tvl.php">TVL-HE </a>
-                                    </li>
-                                    <li>
-                                        <a href="../bedlp-hedCurr/tvl.php">TVL-ICT </a>
-                                    </li>
-                                </ul>
-                            </li>';
-                            // END OF PRINCIPAL
-
-                            // ADMISSION SIDE
-                        } elseif ($_SESSION['role'] == "Admission") {
-                            echo '<li class="active">
-                        <a href="javascript:void(0)" aria-expanded="true"><i
-                                class="ti-dashboard"></i><span>dashboard</span></a>
-                        </li>
-                            <li><a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-line-chart"></i>
-                            <span>Enrollment</span></a>
-                                    <ul class="collapse">
-                                    <li>
-                                        <a href="../bedlp-enrollment/list.pending.php">Pending Students </a>
-                                    </li>
-                                    <li>
-                                        <a href="index3-horizontalmenu.html">Online Inquiries </a>
-                                    </li>
-                                        </ul>
-                                    </li>
-                            <li><a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-gear"></i>
-                                <span>Maintenance</span></a>
-                                    <ul class="collapse">
-                                        <li>
-                                            <a href="../bedlp-students/list.students.php">Student List </a>
-                                        </li>
-                                        <li>
-                                        <a href="../bedlp-master-key/edit.admission.php?admission_id= ' . $admission_id . '">Edit Profile </a>
-                                    </li>   
-                                    </ul>
-                                </li>
-                            <li><a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-chain"></i>
-                                <span>Data Entry</span></a>
-                                    <ul class="collapse">
-                                    <li>
-                                        <a href="../bedlp-students/add.students.php">Add Students </a>
                                     </li>
                                 </ul>
                             </li>
@@ -300,7 +242,76 @@
                                         <a href="../bedlp-hedCurr/tvl.php">TVL-HE </a>
                                     </li>
                                     <li>
-                                        <a href="../bedlp-hedCurr/tvl.php">TVL-ICT </a>
+                                        <a href="../bedlp-hedCurr/gas.php">GAS </a>
+                                    </li>
+                                </ul>
+                            </li>';
+                            // END OF PRINCIPAL
+
+                            // ADMISSION SIDE
+                        } elseif ($_SESSION['role'] == "Admission") {
+                            echo '<li class="active">
+                        <a href="../bedlp-dashboard/index.php" aria-expanded="true"><i
+                                class="ti-dashboard"></i><span>dashboard</span></a>
+                        </li>
+                            <li><a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-line-chart"></i>
+                            <span>Enrollment</span></a>
+                                    <ul class="collapse">
+                                    <li>
+                                        <a href="../bedlp-enrollment/list.pending.php">Pending Students </a>
+                                    </li>
+                                    <li>
+                                        <a href="../bedlp-online-enrollment/online.list.php">Online Inquiries </a>
+                                    </li>
+                                        </ul>
+                                    </li>
+                            <li><a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-gear"></i>
+                                <span>Maintenance</span></a>
+                                    <ul class="collapse">
+                                        <li>
+                                            <a href="../bedlp-students/list.students.php">Student List </a>
+                                        </li>
+                                        <li>
+                                        <a href="../bedlp-master-key/edit.admission.php?admission_id= ' . $admission_id . '">Edit Profile </a>
+                                    </li>   
+                                    </ul>
+                                </li>
+                            <li><a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-chain"></i>
+                                <span>Data Entry</span></a>
+                                    <ul class="collapse">
+                                    <li>
+                                        <a href="../bedlp-students/add.students.php">Add Students </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-newspaper-o"></i>
+                            <span>Class Schedule</span></a>
+                                <ul class="collapse">
+                                    <li>
+                                        <a href="../bedlp-schedules/list.sched.senior.php">Senior </a>
+                                    </li>
+                                    <li>
+                                        <a href="../bedlp-schedules/list.sched.k-10.php">Primary - Junior </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-book"></i>
+                            <span>View Subjects</span></a>
+                                <ul class="collapse">
+                                    <li>
+                                        <a href="../bedlp-hedCurr/abm.php">ABM </a>
+                                    </li>
+                                    <li>
+                                        <a href="../bedlp-hedCurr/stem.php">STEM </a>
+                                    </li>
+                                    <li>
+                                        <a href="../bedlp-hedCurr/humss.php">HUMMS </a>
+                                    </li>
+                                    <li>
+                                        <a href="../bedlp-hedCurr/tvl.php">TVL-HE </a>
+                                    </li>
+                                    <li>
+                                        <a href="../bedlp-hedCurr/gas.php">GAS </a>
                                     </li>
                                 </ul>
                             </li>';
@@ -309,7 +320,7 @@
                             // ACCOUNTING SIDE
                         } elseif ($_SESSION['role'] == "Accounting") {
                             echo '<li class="active">
-                        <a href="javascript:void(0)" aria-expanded="true"><i
+                        <a href="../bedlp-dashboard/index.php" aria-expanded="true"><i
                                 class="ti-dashboard"></i><span>dashboard</span></a>
                     </li>
                         <li><a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-gear"></i>
@@ -341,7 +352,7 @@
                             // TEACHER SIDE
                         } elseif ($_SESSION['role'] == "Teacher") {
                             echo '<li class="active">
-                        <a href="javascript:void(0)" aria-expanded="true"><i
+                        <a href="../bedlp-dashboard/index.php" aria-expanded="true"><i
                                 class="ti-dashboard"></i><span>dashboard</span></a>
                     </li>
                     
@@ -359,7 +370,7 @@
                             // ADVISER SIDE
                         } elseif ($_SESSION['role'] == "Adviser") {
                             echo '<li class="active">
-                        <a href="javascript:void(0)" aria-expanded="true"><i
+                        <a href="../bedlp-dashboard/index.php" aria-expanded="true"><i
                                 class="ti-dashboard"></i><span>dashboard</span></a>
                     </li>
                             <li><a href="#" aria-expanded="true">Enrollment</a>
@@ -423,7 +434,7 @@
                                         <a href="../bedlp-hedCurr/tvl.php">TVL-HE </a>
                                     </li>
                                     <li>
-                                        <a href="../bedlp-hedCurr/tvl.php">TVL-ICT </a>
+                                        <a href="../bedlp-hedCurr/gas.php">GAS </a>
                                     </li>
                                 </ul>
                             </li>
@@ -453,7 +464,7 @@
                             // STUDENT SIDE
                         } elseif ($_SESSION['role'] == "Student") {
                             echo '<li class="active">
-                        <a href="javascript:void(0)" aria-expanded="true"><i
+                        <a href="../bedlp-dashboard/index.php" aria-expanded="true"><i
                                 class="ti-dashboard"></i><span>dashboard</span></a>
                                 </li>
                             
@@ -466,7 +477,7 @@
                                     <a href="../bedlp-students/edit.infoStud.php"> Personal Info. </a>
                                 </li>
                                 <li>
-                                        <a href="../bedlp-subjects/list.enrolledSub.senior.php">Enrollment Info. </a>
+                                        <a href="../bedlp-students/add.enroll.php">Enrollment Info. </a>
                                     </li>
                                 </ul>
                             </li>

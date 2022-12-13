@@ -90,7 +90,7 @@ $cur_page = "Pending students" ?>
                                                     <td><?php echo $row['date_enrolled'] ?></td>
                                                     <td>
                                                         <span
-                                                            class="badge badge-<?php if ($row['remark'] == "Checked") {
+                                                            class="badge badge-<?php if ($row['remark'] == "Checked" || "Approved") {
                                                                                             echo 'success';
                                                                                         } elseif ($row['remark'] == "Pending") {
                                                                                             echo 'warning';
@@ -137,11 +137,19 @@ $cur_page = "Pending students" ?>
                                                                     Update
                                                                 </a>
 
-                                                                <a href="../bedlp-subjects/list.enrolledSub.senior.php?<?php echo 'stud_id=' . $stud_id; ?>"
+                                                                <?php if (!empty($glvl_id)) { ?>
+                                                                <a href="../bedlp-subjects/list.enrolledSub.senior.php?<?php echo 'stud_id=' . $stud_id . '&glvl_id=' . $glvl_id; ?>"
                                                                     type="button" class="dropdown-item "><i
                                                                         class="fa fa-book"></i>
                                                                     Subjects
                                                                 </a>
+                                                                <?php } else { ?>
+                                                                <a href="../bedlp-subjects/list.enrolledSub.k-10.php?<?php echo 'stud_id=' . $stud_id; ?>"
+                                                                    type="button" class="dropdown-item "><i
+                                                                        class="fa fa-book"></i>
+                                                                    Subjects
+                                                                </a>
+                                                                <?php } ?>
 
                                                                 <a href="../bedlp-forms/pre-en-data.php?<?php echo 'stud_id=' . $stud_id; ?>"
                                                                     type="button" class="dropdown-item "><i
@@ -159,14 +167,14 @@ $cur_page = "Pending students" ?>
                                                                     Accounting Form
                                                                 </a>
                                                                 <?php if (!empty($glvl_id)) { ?>
-                                                                <a href="../bedlp-forms/all_formsSH.php?<?php echo 'stud_id=' . $id . '&glvl_id=' . $glvl_id; ?>"
+                                                                <a href="../bedlp-forms/all_formsSH.php?<?php echo 'stud_id=' . $stud_id . '&glvl_id=' . $glvl_id; ?>"
                                                                     type="button" class="dropdown-item "><i
                                                                         class="fa fa-eye"></i>
                                                                     Reg Form
                                                                 </a>
 
                                                                 <?php } else { ?>
-                                                                <a href="../bedlp-forms/all_formsSH.php?<?php echo 'stud_id=' . $id; ?>"
+                                                                <a href="../bedlp-forms/all_formsSH.php?<?php echo 'stud_id=' . $stud_id; ?>"
                                                                     type="button" class="dropdown-item "><i
                                                                         class="fa fa-eye"></i>
                                                                     Reg Form

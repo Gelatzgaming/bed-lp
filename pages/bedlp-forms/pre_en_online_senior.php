@@ -1,5 +1,5 @@
 <?php
-require ('../bed-fpdf/fpdf.php');
+require ('../bedlp-fpdf/fpdf.php');
 require '../../includes/conn.php';
 
 
@@ -29,7 +29,7 @@ $pdf->SetMargins(10,10,10);
 $pdf ->AddPage();
 
     // Logo(x axis, y axis, height, width)
-$pdf->Image('../../../assets/img/logo.png',50,5,15,15);
+$pdf->Image('../../assets/img/logo.png',50,5,15,15);
     // text color
 $pdf->SetTextColor(255,0,0);
     // font(font type,style,font size)
@@ -711,4 +711,3 @@ $pdf->Cell(40,6,'FOLLOW-UP DETAILS / REMARKS / CPMMENTS / ARRANGEMENTS ',0,1,'L'
 
 }
 $pdf ->Output();
-?>

@@ -1,5 +1,5 @@
 <?php
-require('../bed-fpdf/fpdf.php');
+require('../bedlp-fpdf/fpdf.php');
 require '../../includes/conn.php';
 
 
@@ -69,7 +69,7 @@ while ($row = mysqli_fetch_array($get_stud)) {
     //--------------------------Principal---------------------------------//
 
     // CELL (Width, height, text border, Next line, align)
-    $pdf->Image('../../../assets/img/logo.png', 33, 9, 10, 10);
+    $pdf->Image('../../assets/img/logo.png', 33, 9, 10, 10);
 
     $pdf->SetTextColor(255, 0, 0);
 
@@ -413,7 +413,7 @@ while ($row = mysqli_fetch_array($get_prin)) {
     $pdf->Cell(35, 3, 'PARENT\'S SIGNATURE: ', 0, 0);
     $pdf->Cell(61, 3, '', 'B', 0, 'C');
     $pdf->Cell(5, 3, '', 0, 0);
-    $pdf->Cell(5, 3, '', 0,0);
+    $pdf->Cell(5, 3, '', 0, 0);
     $pdf->SetFont('Arial', '', 9);
     $pdf->Cell(45, 3, utf8_decode($row['prin_fname'] . ' ' . $row['prin_mname'] . ' ' . $row['prin_lname']), 'B', 1, 'C');
 
@@ -432,7 +432,7 @@ $pdf->SetRightMargin(5);
 $pdf->SetAutoPageBreak(true, 8);
 $pdf->AddPage();
 
-$pdf->Image('../../../assets/img/logo.png', 33, 9, 10, 10);
+$pdf->Image('../../assets/img/logo.png', 33, 9, 10, 10);
 
 $pdf->SetTextColor(255, 0, 0);
 
@@ -705,7 +705,7 @@ WHERE sy.student_id = $stud_id AND sy.ay_id = '$ay_id' AND sy.semester_id = '$se
 while ($row = mysqli_fetch_array($get_stud)) {
 
 
-    $pdf->Image('../../../assets/img/logo.png', 33, 9, 10, 10);
+    $pdf->Image('../../assets/img/logo.png', 33, 9, 10, 10);
 
     $pdf->SetTextColor(255, 0, 0);
 
@@ -1050,7 +1050,7 @@ while ($row = mysqli_fetch_array($get_prin)) {
     $pdf->Cell(35, 3, "ENROLLING OFFICER: ", 0, 0);
     $pdf->Cell(61, 3, '', 'B', 0, 'C');
     $pdf->Cell(5, 3, '', 0, 0);
-    $pdf->Cell(5, 3, '', 0,0);
+    $pdf->Cell(5, 3, '', 0, 0);
     $pdf->SetFont('Arial', '', 9);
     $pdf->Cell(45, 3, utf8_decode($row['prin_fname'] . ' ' . $row['prin_mname'] . ' ' . $row['prin_lname']), 'B', 1, 'C');
 
@@ -1080,7 +1080,7 @@ WHERE sy.student_id = '$stud_id' AND sy.ay_id = '$ay_id' AND sy.semester_id = '$
 while ($row = mysqli_fetch_array($get_stud)) {
 
 
-    $pdf->Image('../../../assets/img/logo.png', 33, 9, 10, 10);
+    $pdf->Image('../../assets/img/logo.png', 33, 9, 10, 10);
 
     $pdf->SetTextColor(255, 0, 0);
 

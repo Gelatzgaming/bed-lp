@@ -229,7 +229,7 @@ if (isset($_GET['g1'])) {
 
                                                         <button type="button" class="btn btn-danger mx-1"
                                                             data-toggle="modal"
-                                                            data-target="#delete<?php echo $sched_id ?>"><i
+                                                            data-target="#delete<?php echo $row['subject_id'] ?>"><i
                                                                 class="fa fa-trash"></i>
                                                             Delete
                                                         </button>
@@ -252,7 +252,7 @@ if (isset($_GET['g1'])) {
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-secondary"
                                                                             data-dismiss="modal">Cancel</button>
-                                                                        <a href="userData/ctrl.del.sub.k-10.php?subject_id=<?php echo $row['subject_id'] ?>"
+                                                                        <a href="userData/ctrl.del.sched.k-10.php<?php echo '?schedule_id=' . $sched_id . '&grd_lvl=' . $grd_lvl; ?>"
                                                                             class="btn btn-danger">Delete</a>
                                                                     </div>
                                                                 </div>

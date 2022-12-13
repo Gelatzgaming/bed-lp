@@ -1,8 +1,24 @@
 <?php $par_page = "Dashboard";
 $cur_page = "Dashboard" ?>
 <?php
+
 // head
 include '../../includes/bedlp-header.php';
+
+$get_active_sem = mysqli_query($conn, "SELECT * FROM tbl_active_semesters AS asem
+LEFT JOIN tbl_semesters AS sem ON sem.semester_id = asem.semester_id");
+while ($row = mysqli_fetch_array($get_active_sem)) {
+    $sem = $row['semester_id'];
+    $sem_n = $row['semester'];
+}
+
+$get_active_acad = mysqli_query($conn, "SELECT * FROM tbl_active_acadyears AS aay
+LEFT JOIN tbl_acadyears AS ay ON ay.ay_id = aay.ay_id");
+while ($row = mysqli_fetch_array($get_active_acad)) {
+    $acad = $row['ay_id'];
+    $acad_n = $row['academic_year'];
+}
+
 ?>
 
 <body>
@@ -32,63 +48,44 @@ include '../../includes/bedlp-header.php';
             <?php include '../../includes/bedlp-navbar.php'; ?>
 
             <div class="main-content-inner">
-                <!-- sales report area start -->
-                <!-- <div class="sales-report-area mt-5 mb-5">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="single-report mb-xs-30">
-                                <div class="s-report-inner pr--20 pt--30 mb-3">
-                                    <div class="icon"><i class="fa fa-btc"></i></div>
-                                    <div class="s-report-title d-flex justify-content-between">
-                                        <h4 class="header-title mb-0">Bitcoin</h4>
-                                        <p>24 H</p>
-                                    </div>
-                                    <div class="d-flex justify-content-between pb-2">
-                                        <h2>$ 4567809,987</h2>
-                                        <span>- 45.87</span>
-                                    </div>
-                                </div>
-                                <canvas id="coin_sales1" height="100"></canvas>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="single-report mb-xs-30">
-                                <div class="s-report-inner pr--20 pt--30 mb-3">
-                                    <div class="icon"><i class="fa fa-btc"></i></div>
-                                    <div class="s-report-title d-flex justify-content-between">
-                                        <h4 class="header-title mb-0">Bitcoin Dash</h4>
-                                        <p>24 H</p>
-                                    </div>
-                                    <div class="d-flex justify-content-between pb-2">
-                                        <h2>$ 4567809,987</h2>
-                                        <span>- 45.87</span>
-                                    </div>
-                                </div>
-                                <canvas id="coin_sales2" height="100"></canvas>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="single-report">
-                                <div class="s-report-inner pr--20 pt--30 mb-3">
-                                    <div class="icon"><i class="fa fa-eur"></i></div>
-                                    <div class="s-report-title d-flex justify-content-between">
-                                        <h4 class="header-title mb-0">Euthorium</h4>
-                                        <p>24 H</p>
-                                    </div>
-                                    <div class="d-flex justify-content-between pb-2">
-                                        <h2>$ 4567809,987</h2>
-                                        <span>- 45.87</span>
-                                    </div>
-                                </div>
-                                <canvas id="coin_sales3" height="100"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-                <!-- sales report area end -->
-                <!-- overview area start -->
+                <?php if ($_SESSION['role'] == "Accounting" || $_SESSION['role'] == "Admission" || $_SESSION['role'] == "Registrar" || $_SESSION['role'] == "Adviser" || $_SESSION['role'] == "Principal") {
+                    include 'dblp.general.php';
+                } else if ($_SESSION['role'] == "Student") {
 
-                <!-- row area start-->
+                    $get_level_id = mysqli_query($conn, "SELECT * FROM tbl_schoolyears
+                    WHERE student_id = '$stud_id' AND semester_id = '0' AND ay_id = '$acad'") or die(mysqli_error($conn));
+                    $result = mysqli_num_rows($get_level_id);
+
+                    if ($result > 0) {
+                        while ($row = mysqli_fetch_array($get_level_id)) {
+                            $grade_level = $row['grade_level_id'];
+                        }
+                    } else {
+
+                        $get_level_id = mysqli_query($conn, "SELECT * FROM tbl_schoolyears
+                    WHERE student_id = '$stud_id' AND semester_id = '$sem' AND ay_id = '$acad'") or die(mysqli_error($conn));
+                        $result2 = mysqli_num_rows($get_level_id);
+
+                        if ($result2 > 0) {
+                            while ($row = mysqli_fetch_array($get_level_id)) {
+                                $grade_level = $row['grade_level_id'];
+                            }
+                        }
+                    }
+
+                    if (!empty($grade_level)) {
+                        if ($grade_level > 13) {
+                            include 'dblp.student.senior.php';
+                        } else if ($grade_level < 14) {
+                            include 'dblp.student.php';
+                        }
+                    } else {
+                        include 'dblp.student.senior.php';
+                    }
+                } else {
+                    header('location: ../bed-500/page500.php');
+                }
+                ?>
             </div>
         </div>
         <!-- main content area end -->

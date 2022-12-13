@@ -10,15 +10,15 @@ $cur_page = "Edit Schedules"; ?>
     <title>Offer/Open Subjects | SFAC Las Pinas</title>
     <?php include '../../includes/bedlp-header.php';
 
-    $sen_id = $_GET['sen_id'];
-    $sched_id = $_GET['sched_id'];
+    $sen_id = $_GET['subject_id'];
+    $sched_id = $_GET['schedule_id'];
 
 
     $get_senID = mysqli_query($conn, "SELECT * FROM tbl_schedules WHERE subject_id = '$sen_id' AND schedule_id = '$sched_id'");
     $result = mysqli_num_rows($get_senID);
     if ($result > 0) {
-        $_SESSION['sen_id'] = $sen_id;
-        $_SESSION['sched_id'] = $sched_id;
+        $_SESSION['subject_id'] = $sen_id;
+        $_SESSION['schedule_id'] = $sched_id;
     } else {
         header('location: ../bed-404/page404.php');
     }
@@ -52,18 +52,14 @@ $cur_page = "Edit Schedules"; ?>
     </div>
 </div>';
                 unset($_SESSION['errors']);
-            } elseif (!empty($_SESSION['success'])) {
-                echo ' <div class="alert-dismiss">
-    <div class="alert alert-success alert-dismissible fade show py-3 text-center"
-        role="alert">
-        <strong>Successfully Added.</strong>
-        <button type="button" class="close" data-dismiss="alert"
-            aria-label="Close">
-            <span class="fa fa-times"></span>
-        </button>
-    </div>
-</div> ';
-                unset($_SESSION['success']);
+            } elseif (!empty($_SESSION['update-failed'])) {
+                echo '  <div class="alert alert-danger alert-dismissible fade show py-3 text-center" role="alert" >
+                    <strong>Update Failed</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>';
+                unset($_SESSION['update-failed']);
             } elseif (!empty($_SESSION['success-edit'])) {
                 echo ' <div class="alert alert-info alert-dismissible fade show py-3 text-center" role="alert">
                 <strong>Successfully Edited</strong>
@@ -105,7 +101,7 @@ $cur_page = "Edit Schedules"; ?>
                                         LEFT JOIN tbl_strands AS strd ON strd.strand_id = subsen.strand_id
                                         LEFT JOIN tbl_grade_levels AS gl ON gl.grade_level_id = subsen.grade_level_id
                                         LEFT JOIN tbl_teachers AS teach ON teach.teacher_id = sched.teacher_id
-                                        WHERE sched.subject_id = '$sen_id' AND sched.semester = 0 AND sched.schedule_id = '$_SESSION[sched_id]' AND acadyear = '$act_acad'") or die(mysqli_error($conn));
+                                        WHERE sched.subject_id = '$sen_id' AND sched.semester = '$act_sem' AND sched.schedule_id = '$sched_id' AND acadyear = '$act_acad'") or die(mysqli_error($conn));
                                         while ($row = mysqli_fetch_array($get_subject)) {
                                             $strand_n = $row['strand_name'];
 
@@ -117,15 +113,16 @@ $cur_page = "Edit Schedules"; ?>
 
 
                                                 <input value="<?php echo $act_acad; ?>" hidden name="acadyear">
-                                                <input value="<?php echo $sem; ?> " hidden name="sem">
-                                                <input value="<?php echo $sen_id; ?> " hidden name="sen_id">
+                                                <input value="<?php echo $act_sem; ?> " hidden name="sem">
+                                                <input value="<?php echo $sen_id; ?> " hidden name="subject_id">
+                                                <input value="<?php echo $sched_id; ?> " hidden name="schedule_id">
 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="example-url-input"
                                                             class="col-form-label">Code</label>
                                                         <input class="form-control" type="text"
-                                                            placeholder="Enter Subject Code" name="subj_code"
+                                                            placeholder="Enter Subject Code" name="subject_code"
                                                             id="example-url-input" readonly
                                                             value=" <?php echo $row['subject_code']; ?>">
                                                     </div>
@@ -136,8 +133,8 @@ $cur_page = "Edit Schedules"; ?>
                                                             class="col-form-label">Description</label>
                                                         <input class="form-control" type="text"
                                                             placeholder="Enter Subject Description"
-                                                            name="subj_description" id="example-search-input" readonly
-                                                            value=" <?php echo $row['subject_description'] ?>">
+                                                            name="subject_description" id="example-search-input"
+                                                            readonly value=" <?php echo $row['subject_description'] ?>">
                                                     </div>
                                                 </div>
                                             </div>
