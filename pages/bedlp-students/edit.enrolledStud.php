@@ -94,7 +94,7 @@ $cur_page = "Edit Students" ?>
                             LEFT JOIN tbl_semesters AS sem ON sem.semester_id = sy.semester_id
                             LEFT JOIN tbl_grade_levels AS gl ON gl.grade_level_id =sy.grade_level_id
                             LEFT JOIN tbl_acadyears AS ay ON ay.ay_id = sy.ay_id  
-                            WHERE sy.student_id = '$stud_id' AND ay.academic_year = '$_SESSION[active_acadyears]' AND (sem.semester = '$_SESSION[active_semester]' OR sy.semester_id = '0')") or die(mysqli_error($conn));
+                            WHERE sy.student_id = '$stud_id' AND ay.academic_year = '$act_acad' AND (sem.semester = '$act_sem' OR sy.semester_id = '0')") or die(mysqli_error($conn));
                                         while ($row = mysqli_fetch_array($get_enrolled_stud)) {
                                         ?>
                                         <form action="./userData/user.edit.enrolledStud.php" method="POST"
@@ -196,8 +196,12 @@ $cur_page = "Edit Students" ?>
                                                         <select class="form-control form-control-lg"
                                                             data-placeholder="Select Strand (for Senior High Student)"
                                                             data-dropdown-css-class="select2-purple" name="strand">
-                                                            <option value="<?php echo $row['strand_id']; ?>">
-                                                                <?php echo $row['strand_def']; ?></option>
+
+                                                            <option value="<?php echo $row['strand_id']; ?>" selected
+                                                                disabled>
+                                                                <?php echo $row['strand_def']; ?>Select Strand (for
+                                                                Senior
+                                                                High Student) </option>
                                                             <?php $get_strand = mysqli_query($conn, "SELECT * FROM tbl_strands WHERE strand_id NOT IN ('$row[strand_id]')");
                                                                 while ($row3 = mysqli_fetch_array($get_strand)) {
                                                                 ?> <option value="<?php echo $row3['strand_id']; ?>">
@@ -236,8 +240,7 @@ $cur_page = "Edit Students" ?>
 
                                 <div class="justify-content-end mr-2">
                                     <?php if ($_SESSION['role'] == "Accounting" || $_SESSION['role'] == "Registrar") { ?>
-                                    <a href="../bedlp-enrollment/list.enrolledStud.php?search=<?php echo $_SESSION['search']; ?>&look="
-                                        class="btn btn-secondary mb-3">
+                                    <a href="../bedlp-enrollment/list.pending.php?" class="btn btn-secondary mb-3">
                                         <?php  } else { ?>
                                         <a href="../bedlp-enrollment/list.pending.php" class="btn btn-secondary mb-3">
 

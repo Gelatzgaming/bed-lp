@@ -34,3 +34,30 @@ ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "ee6b7db5b51705a13dc2339db3eda
 <!-- others plugins -->
 <script src="../../assets/js/plugins.js"></script>
 <script src="../../assets/js/scripts.js"></script>
+
+
+<script type="text/javascript"
+    src="https://gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/js/dataTables.checkboxes.min.js"></script>
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#example').DataTable({
+        'columnDefs': [{
+            'targets': 0,
+            'checkboxes': {
+                'selectRow': true
+            }
+        }]
+    })
+    $('#select-all-cb').click(function(val) {
+        if (val.target.checked)
+            $('input.select-cb').prop("checked", true);
+        else {
+            $('input.select-cb').prop("checked", false);
+
+        }
+    });
+
+})
+</script>

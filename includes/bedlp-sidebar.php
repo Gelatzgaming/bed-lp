@@ -16,8 +16,8 @@
                       <!-- MASTER KEY -->
                       <?php if ($_SESSION['role'] == "Master Key") {
                             echo '<li class="active">
-                          <a href="../bedlp-dashboard/index.php" aria-expanded="true"><i
-                                  class="ti-dashboard"></i><span>dashboard</span></a>
+                            <a href="../bedlp-dashboard/index.php" aria-expanded="true"><i
+                                    class="ti-dashboard"></i><span>dashboard</span></a>
                         </li>
                       
                         <li>
@@ -479,6 +479,7 @@
                                 <li>
                                         <a href="../bedlp-students/add.enroll.php">Enrollment Info. </a>
                                     </li>
+                                    
                                 </ul>
                             </li>
 
@@ -487,7 +488,7 @@
                                     <ul class="collapse">
                                         
                                         <li>
-                                        <a href="../bedlp-students/edit.students.php?stud_id= ' . $stud_id . '">Edit Profile </a>
+                                        <a href="../bedlp-students/edit.students.php?student_id= ' . $stud_id . '">Edit Profile </a>
                                     </li>   
                                 </ul>
                             </li>

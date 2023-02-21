@@ -92,8 +92,10 @@ $cur_page = "Pending students" ?>
                                                         <span
                                                             class="badge badge-<?php if ($row['remark'] == "Checked" || "Approved") {
                                                                                             echo 'success';
-                                                                                        } elseif ($row['remark'] == "Pending") {
+                                                                                        } elseif ($row['remark'] == "Pending" || "Disapproved" || "Canceled") {
                                                                                             echo 'warning';
+                                                                                        } elseif ($row['remark'] == "Disapproved" || "Canceled") {
+                                                                                            echo 'danger';
                                                                                         } else {
                                                                                             echo 'danger';
                                                                                         } ?> p-1"><?php echo $row['remark'] ?></span>
@@ -137,19 +139,11 @@ $cur_page = "Pending students" ?>
                                                                     Update
                                                                 </a>
 
-                                                                <?php if (!empty($glvl_id)) { ?>
-                                                                <a href="../bedlp-subjects/list.enrolledSub.senior.php?<?php echo 'stud_id=' . $stud_id . '&glvl_id=' . $glvl_id; ?>"
+                                                                <a href="../bedlp-subjects/list.enrolledSub.senior.php?<?php echo 'stud_id=' . $stud_id; ?>"
                                                                     type="button" class="dropdown-item "><i
                                                                         class="fa fa-book"></i>
                                                                     Subjects
                                                                 </a>
-                                                                <?php } else { ?>
-                                                                <a href="../bedlp-subjects/list.enrolledSub.k-10.php?<?php echo 'stud_id=' . $stud_id; ?>"
-                                                                    type="button" class="dropdown-item "><i
-                                                                        class="fa fa-book"></i>
-                                                                    Subjects
-                                                                </a>
-                                                                <?php } ?>
 
                                                                 <a href="../bedlp-forms/pre-en-data.php?<?php echo 'stud_id=' . $stud_id; ?>"
                                                                     type="button" class="dropdown-item "><i

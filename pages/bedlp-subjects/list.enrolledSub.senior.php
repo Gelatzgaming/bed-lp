@@ -162,7 +162,7 @@ $cur_page = "Enrollment Information";
                                 <div class="card-body">
 
                                     <?php if ($_SESSION['role'] == "Student") { ?>
-                                    <form action="userData/ctrl.del.list.offeredSubSH.php" method="POST">
+                                    <form action="userData/ctrl.del.list.offeredSub.senior.php" method="POST">
                                         <?php } elseif ($_SESSION['role'] == "Admission" || $_SESSION['role'] == "Accounting" || $_SESSION['role'] == "Registrar" || $_SESSION['role'] == "Adviser") { ?>
 
                                         <form
@@ -173,7 +173,7 @@ $cur_page = "Enrollment Information";
                                                 <table id="dt3" class="text-center" style="width: 100%;">
                                                     <thead class="text-capitalize">
                                                         <tr>
-                                                            <th></th>
+                                                            <th><input type="checkbox" name="" id="select-all-cb"></th>
                                                             <th>Code</th>
                                                             <th>Description</th>
                                                             <th>Strand</th>
@@ -208,12 +208,12 @@ $cur_page = "Enrollment Information";
                                                                         value="<?php echo $row['enrolled_sub_id'] ?>"
                                                                         hidden>
                                                                     <input
-                                                                        class="custom-control-input custom-control-input-navy"
+                                                                        class="custom-control-input custom-control-input-navy select-cb"
                                                                         type="checkbox" name="checked[]"
                                                                         value="<?php echo $index++; ?>"
-                                                                        id="customCheckbox4<?php echo $row['enrolled_sub_id'] ?>">
+                                                                        id="option-a<?php echo $row['enrolled_sub_id'] ?>">
                                                                     <label
-                                                                        for="customCheckbox4<?php echo $row['enrolled_sub_id'] ?>"
+                                                                        for="option-a<?php echo $row['enrolled_sub_id'] ?>"
                                                                         class="custom-control-label"></label>
                                                                 </div>
                                                                 <?php }
@@ -224,12 +224,12 @@ $cur_page = "Enrollment Information";
                                                                         value="<?php echo $row['enrolled_sub_id'] ?>"
                                                                         hidden>
                                                                     <input
-                                                                        class="custom-control-input custom-control-input-navy"
+                                                                        class="custom-control-input custom-control-input-navy select-cb"
                                                                         type="checkbox" name="checked[]"
                                                                         value="<?php echo $index++; ?>"
-                                                                        id="customCheckbox4<?php echo $row['enrolled_sub_id'] ?>">
+                                                                        id="option-a<?php echo $row['enrolled_sub_id'] ?>">
                                                                     <label
-                                                                        for="customCheckbox4<?php echo $row['enrolled_sub_id'] ?>"
+                                                                        for="option-a<?php echo $row['enrolled_sub_id'] ?>"
                                                                         class="custom-control-label"></label>
                                                                 </div>
                                                                 <?php } ?>
@@ -297,11 +297,11 @@ $cur_page = "Enrollment Information";
                                                 <div class="row">
                                                     <div class="col-4">
                                                         <?php if ($_SESSION['role'] == "Accounting" || $_SESSION['role'] == "Registrar") { ?>
-                                                        <a href="../bedlp-enrollment/list.pending.php?<?php echo $_SESSION['search']; ?>&look="
-                                                            class="btn btn-default bg-gray p-2">
+                                                        <a href="../bedlp-enrollment/list.pending.php"
+                                                            class="btn btn-secondary p-2">
                                                             <?php } else { ?>
                                                             <a href="../bedlp-enrollment/list.pending.php."
-                                                                class="btn btn-default bg-gray p-2">
+                                                                class="btn btn-secondary p-2">
                                                                 <?php } ?>
                                                                 <i class="fa fa-arrow-circle-left">
                                                                 </i>
@@ -310,12 +310,11 @@ $cur_page = "Enrollment Information";
 
                                                     <div class="ml-auto mr-1">
                                                         <a href="list.offeredSub.senior.php?<?php echo 'stud_id=' . $stud_id; ?>"
-                                                            class="btn btn-default bg-lightblue p-2"><i
-                                                                class="fa fa-plus">
+                                                            class="btn btn-info p-2"><i class="fa fa-plus">
                                                             </i>
                                                             Add Subjects</a>
 
-                                                        <button name="submit" class="btn btn-default bg-red p-2"><i
+                                                        <button name="submit" class="btn btn-danger p-2"><i
                                                                 class="fa fa-trash-alt">
                                                             </i>
                                                             Drop Selected</a>

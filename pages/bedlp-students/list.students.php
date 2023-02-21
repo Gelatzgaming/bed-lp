@@ -59,10 +59,12 @@ $cur_page = "Students List" ?>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php $get_user = mysqli_query($conn, "SELECT *, CONCAT(tbl_students.student_lname, ', ', tbl_students.student_fname, ' ', tbl_students.student_mname) AS fullname 
+                                                <?php
+
+                                                $get_user = mysqli_query($conn, "SELECT *, CONCAT(tbl_students.student_lname, ', ', tbl_students.student_fname, ' ', tbl_students.student_mname) AS fullname 
                                                 FROM tbl_students");
                                                 while ($row = mysqli_fetch_array($get_user)) {
-                                                    $id = $row['student_id'];
+                                                    $id = $row['student_id']
                                                 ?>
                                                 <tr>
                                                     <td><img class="img-fluid mr-4"
@@ -72,7 +74,7 @@ $cur_page = "Students List" ?>
                                                     <td><?php echo $row['fullname'] ?></td>
                                                     <td><?php echo $row['email'] ?></td>
                                                     <td><?php echo $row['username'] ?></td>
-                                                    <td><a href="edit.students.php<?php echo '?student_id=' . $id; ?>"
+                                                    <td><a href="edit.students.php<?php echo '?student_id=' . $id ?>"
                                                             type="button" class="btn btn-info mx-1"><i
                                                                 class="fa fa-edit"></i>
                                                             Update

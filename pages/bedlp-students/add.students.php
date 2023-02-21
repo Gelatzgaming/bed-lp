@@ -1,3 +1,5 @@
+<?php $par_page = "Data Entry";
+$cur_page = "Add Students" ?>
 <!DOCTYPE html>
 <html lang="en">
 

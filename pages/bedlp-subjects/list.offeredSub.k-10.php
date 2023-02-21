@@ -15,7 +15,7 @@ $cur_page = "Subject List";
 
     if ($_SESSION['role'] == "Admission" || $_SESSION['role'] == "Accounting" || $_SESSION['role'] == "Registrar" || $_SESSION['role'] == "Adviser") {
         $stud_id = $_GET['stud_id'];
-        $_SESSION['studID'] = $stud_id;
+        $_SESSION['studtID'] = $stud_id;
 
         $get_active_sem = mysqli_query($conn, "SELECT * FROM tbl_active_semesters");
         while ($row = mysqli_fetch_array($get_active_sem)) {
@@ -118,24 +118,24 @@ $cur_page = "Subject List";
                                             <?php } ?>
 
 
-                                        </form>
-                                        <hr class="bg-black">
-                                        <div class="data-tables datatable-dark">
-                                            <table id="dataTable3" class="text-center" style="width: 100%;">
-                                                <thead class="text-capitalize">
-                                                    <tr>
-                                                        <th></th>
-                                                        <th>Code</th>
-                                                        <th>Description</th>
-                                                        <th>Grade Level</th>
-                                                        <th>Days</th>
-                                                        <th>Time</th>
-                                                        <th>Room</th>
-                                                        <th>Professor</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <?php
+
+                                            <hr class="bg-black">
+                                            <div class="data-tables datatable-dark">
+                                                <table id="dataTable3" class="text-center" style="width: 100%;">
+                                                    <thead class="text-capitalize">
+                                                        <tr>
+                                                            <th><input type="checkbox" name="" id="select-all-cb"></th>
+                                                            <th>Code</th>
+                                                            <th>Description</th>
+                                                            <th>Grade Level</th>
+                                                            <th>Days</th>
+                                                            <th>Time</th>
+                                                            <th>Room</th>
+                                                            <th>Professor</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php
                                                         $get_grade_lvl = mysqli_query($conn, "SELECT * FROM tbl_schoolyears AS sy
                                                     LEFT JOIN tbl_acadyears AS ay ON ay.ay_id = sy.ay_id
                                                     WHERE student_id = '$stud_id' AND semester_id = '0' AND ay.academic_year = '$act_acad'") or die(mysqli_error($conn));
@@ -157,70 +157,73 @@ $cur_page = "Subject List";
                                                         while ($row = mysqli_fetch_array($get_offerSub)) {
 
                                                         ?>
-                                                    <tr>
-                                                        <td>
-                                                            <input type="text" name="studID[]"
-                                                                value="<?php echo $stud_id ?>" hidden>
-                                                            <input type="text" name="sched_id[]"
-                                                                value="<?php echo $row['schedule_id']; ?>" hidden>
-                                                            <div class="custom-control custom-checkbox">
-                                                                <input
-                                                                    class="custom-control-input custom-control-input-navy"
-                                                                    type="checkbox"
-                                                                    id="customCheckbox4<?php echo $row['schedule_id'] ?>"
-                                                                    name="checked[]" value="<?php echo $index++; ?>">
-                                                                <label
-                                                                    for="customCheckbox4<?php echo $row['schedule_id'] ?>"
-                                                                    class="custom-control-label"></label>
-                                                            </div>
-                                                        </td>
-                                                        <td><?php echo $row['subject_code']; ?></td>
-                                                        <td><?php echo $row['subject_description']; ?></td>
-                                                        <td><?php echo $row['grade_level']; ?></td>
-                                                        <td><?php echo $row['day']; ?></td>
-                                                        <td><?php echo $row['time']; ?></td>
-                                                        <td><?php echo $row['room']; ?></td>
-                                                        <?php if (empty($row['fullname'])) { ?>
-                                                        <td>TBA</td>
-                                                        <?php } else { ?>
-                                                        <td><?php echo $row['fullname']; ?></td>
-                                                        <?php } ?>
+                                                        <tr>
+                                                            <td>
+                                                                <input type="text" name="studID[]"
+                                                                    value="<?php echo $stud_id ?>" hidden>
+                                                                <input type="text" name="sched_id[]"
+                                                                    value="<?php echo $row['schedule_id']; ?>" hidden>
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input
+                                                                        class="custom-control-input custom-control-input-navy select-cb"
+                                                                        type="checkbox"
+                                                                        id="option-a<?php echo $row['schedule_id'] ?>"
+                                                                        name="checked[]"
+                                                                        value="<?php echo $index++; ?>">
+                                                                    <label
+                                                                        for="option-a<?php echo $row['schedule_id'] ?>"
+                                                                        class="custom-control-label"></label>
+                                                                </div>
+                                                            </td>
+                                                            <td><?php echo $row['subject_code']; ?></td>
+                                                            <td><?php echo $row['subject_description']; ?></td>
+                                                            <td><?php echo $row['grade_level']; ?></td>
+                                                            <td><?php echo $row['day']; ?></td>
+                                                            <td><?php echo $row['time']; ?></td>
+                                                            <td><?php echo $row['room']; ?></td>
+                                                            <?php if (empty($row['fullname'])) { ?>
+                                                            <td>TBA</td>
+                                                            <?php } else { ?>
+                                                            <td><?php echo $row['fullname']; ?></td>
+                                                            <?php } ?>
 
-                                                    </tr>
-                                                    <?php
+                                                        </tr>
+                                                        <?php
                                                         }
                                                         ?>
 
-                                                </tbody>
-                                            </table>
-                                            <div class="row justify-content-end float-right mt-3">
-                                                <div class="ml-auto mr-1 ">
-                                                    <button name="submit"
-                                                        href="list.offeredSubPJH.php?stud_id=<?php echo $stud_id; ?>"
-                                                        class="btn btn-info p-2"><i class="fa fa-plus">
-                                                        </i>
-                                                        Add Subjects</button>
+                                                    </tbody>
+                                                </table>
+                                                <div class="row justify-content-end float-right mt-3">
+                                                    <div class="ml-auto mr-1 ">
+                                                        <button name="submit" class="btn btn-info p-2"><i
+                                                                class="fa fa-plus">
+                                                            </i>
+                                                            Add Subjects</button>
 
+                                                    </div>
+
+
+
+                                                    <?php if ($_SESSION['role'] == "Admission" || $_SESSION['role'] == "Accounting" || $_SESSION['role'] == "Registrar" || $_SESSION['role'] == "Adviser") { ?>
+                                                    <div class="ml-2">
+                                                        <a href="list.enrolledSub.k-10.php?stud_id=<?php echo $stud_id; ?>"
+                                                            class="btn btn-secondary p-2"><i
+                                                                class="fa fa-arrow-circle-left">
+                                                            </i>
+                                                            Back</a>
+                                                    </div>
+                                                    <?php } else if ($_SESSION['role'] == "Student") { ?>
+                                                    <div class="ml-2">
+                                                        <a href="list.enrolledSub.k-10.php"
+                                                            class="btn btn-secondary p-2"><i
+                                                                class="fa fa-arrow-circle-left">
+                                                            </i>
+                                                            Back</a>
+                                                    </div>
                                                 </div>
-
-
-                                    </form>
-                                    <?php if ($_SESSION['role'] == "Admission" || $_SESSION['role'] == "Accounting" || $_SESSION['role'] == "Registrar" || $_SESSION['role'] == "Adviser") { ?>
-                                    <div class="ml-2">
-                                        <a href="list.enrolledSubPJH.php?stud_id=<?php echo $stud_id; ?>"
-                                            class="btn btn-secondary p-2"><i class="fa fa-arrow-circle-left">
-                                            </i>
-                                            Back</a>
-                                    </div>
-                                    <?php } else if ($_SESSION['role'] == "Student") { ?>
-                                    <div class="ml-2">
-                                        <a href="list.enrolledSubPJH.php" class="btn btn-secondary p-2"><i
-                                                class="fa fa-arrow-circle-left">
-                                            </i>
-                                            Back</a>
-                                    </div>
-                                    <?php  } ?>
-
+                                                <?php  } ?>
+                                        </form>
                                 </div>
                             </div>
                         </div>

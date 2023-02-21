@@ -33,7 +33,7 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == "POST") {
     if ($failed != 0) {
         $_SESSION['prev_data'] = array($firstname, $lastname, $midname, $email, $username);
         $_SESSION['errors'] = array($error_img, $error_uname, $error_pass, $error_empty_pass);
-        header('location: ../edit.student.php?stud_id=' . $stud_id);
+        header('location: ../edit.student.php?student_id=' . $stud_id);
     } else {
         $image = (!empty($_FILES['prof_img']['tmp_name'])) ? addslashes(file_get_contents($_FILES['prof_img']['tmp_name'])) : null;
         $hashpwd = password_hash($password, PASSWORD_BCRYPT);

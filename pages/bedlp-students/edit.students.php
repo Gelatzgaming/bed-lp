@@ -8,7 +8,9 @@ $cur_page = "Edit Students" ?>
 
 <head>
     <title>Edit Students | SFAC Las Pinas</title>
-    <?php include '../../includes/bedlp-header.php'; ?>
+    <?php include '../../includes/bedlp-header.php';
+
+    ?>
 
 <body>
     <div class="page-container">
@@ -86,6 +88,7 @@ $cur_page = "Edit Students" ?>
 
 
                                             <?php
+
                                             $get_student = $conn->query("SELECT * FROM tbl_students WHERE student_id = '$_GET[student_id]'");
                                             $res_count = $get_student->num_rows;
                                             if ($res_count == 0) {

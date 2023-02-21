@@ -155,19 +155,18 @@ WHERE sy.student_id = '$stud_id' AND ay.academic_year = '$act_acad' AND sy.semes
                                 <div class="card-body">
 
                                     <?php if ($_SESSION['role'] == "Student") { ?>
-                                    <form action="userData/ctrl.del.list.offeredSubPJH.php" method="POST">
+                                    <form action="userData/ctrl.del.list.offeredSub.k-10.php" method="POST">
                                         <?php } elseif ($_SESSION['role'] == "Admission" || $_SESSION['role'] == "Accounting" || $_SESSION['role'] == "Registrar" || $_SESSION['role'] == "Adviser") { ?>
                                         <form
-                                            action="userData/ctrl.del.list.offeredSubPJH.php?stud_id=<?php echo $stud_id; ?>"
+                                            action="userData/ctrl.del.list.offeredSub.k-10.php?stud_id=<?php echo $stud_id; ?>"
                                             method="POST">
                                             <?php } ?>
                                             <div class="data-tables datatable-dark">
                                                 <table id="dt3" class="text-center" style="width: 100%;">
                                                     <thead class="text-capitalize">
                                                         <tr>
-                                                            <th><input type="checkbox" id="option-all"
-                                                                    onchange="checkAll(this)"><label
-                                                                    for="option-all"></label>
+                                                            <th>
+                                                                <input type="checkbox" name="" id="select-all-cb">
                                                             </th>
                                                             <th>Code</th>
                                                             <th>Description</th>
@@ -177,6 +176,7 @@ WHERE sy.student_id = '$stud_id' AND ay.academic_year = '$act_acad' AND sy.semes
                                                             <th>Professor</th>
                                                         </tr>
                                                     </thead>
+
 
                                                     <tbody>
                                                         <?php $get_enrolled_sub = mysqli_query($conn, "SELECT *, CONCAT(teach.teacher_fname, ' ', LEFT(teach.teacher_mname,1), '. ', teach.teacher_lname) AS fullname FROM tbl_enrolled_subjects AS ensub
@@ -191,14 +191,14 @@ WHERE sy.student_id = '$stud_id' AND ay.academic_year = '$act_acad' AND sy.semes
                                                         ?>
                                                         <tr>
                                                             <td class="pt-3 pb-3">
-                                                                <?php if ($_SESSION['role'] == "Admission" || $_SESSION['role'] == "Accounting" || $_SESSION['role'] == "Registrar" || $_SESSION['role'] == "Adviser") { ?>
+                                                                <?php if ($_SESSION['role'] == " Admission" || $_SESSION['role'] == "Accounting" || $_SESSION['role'] == "Registrar" || $_SESSION['role'] == "Adviser") { ?>
                                                                 <div
                                                                     class="custom-control custom-checkbox justify-content-center">
                                                                     <input type="text" name="enrolled_subID[]"
                                                                         value="<?php echo $row['enrolled_sub_id'] ?>"
                                                                         hidden>
                                                                     <input
-                                                                        class="custom-control-input custom-control-input-navy"
+                                                                        class="custom-control-input custom-control-input-navy select-cb"
                                                                         type="checkbox" name="checked[]"
                                                                         value="<?php echo $index++; ?>"
                                                                         id="option-a<?php echo $row['enrolled_sub_id'] ?>">
@@ -218,9 +218,9 @@ WHERE sy.student_id = '$stud_id' AND ay.academic_year = '$act_acad' AND sy.semes
                                                                         class="custom-control-input custom-control-input-navy"
                                                                         type="checkbox" name="checked[]"
                                                                         value="<?php echo $index++; ?>"
-                                                                        id="option-b<?php echo $row['enrolled_sub_id'] ?>">
+                                                                        id="option-a<?php echo $row['enrolled_sub_id'] ?>">
                                                                     <label
-                                                                        for="option-b<?php echo $row['enrolled_sub_id'] ?>"
+                                                                        for="option-a<?php echo $row['enrolled_sub_id'] ?>"
                                                                         class="custom-control-label"></label>
                                                                 </div>
                                                                 <?php }
@@ -355,20 +355,6 @@ WHERE sy.student_id = '$stud_id' AND ay.academic_year = '$act_acad' AND sy.semes
     });
 
     $("#alertDel").delay(2000).fadeOut();
-
-    var checkboxes = document.querySelectorAll("input [type = 'checkbox']");
-
-    function checkAll(myCheckbox) {
-        if (myCheckbox.checked == true) {
-            checkboxes.forEach(function(checkbox) {
-                checkbox.checked = true;
-            });
-        } else {
-            checkboxes.forEach(function(checkbox) {
-                checkbox.checked = false;
-            })
-        }
-    }
     </script>
 
 

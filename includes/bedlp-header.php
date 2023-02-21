@@ -31,4 +31,8 @@
     <link rel="stylesheet" href="../../assets/css/responsive.css">
     <!-- modernizr css -->
     <script src="../../assets/js/vendor/modernizr-2.8.3.min.js"></script>
+
+    <link type="text/css"
+        href="https://gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/css/dataTables.checkboxes.css"
+        rel="stylesheet" />
 </head>
